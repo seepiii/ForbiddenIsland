@@ -1,0 +1,1 @@
+int seed = Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter the seed","seed",JOptionPane.QUESTION_MESSAGE));
