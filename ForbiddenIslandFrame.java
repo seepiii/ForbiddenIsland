@@ -5,8 +5,9 @@ public class ForbiddenIslandFrame extends JFrame {
 	private static final int HEIGHT = 960;
 	public ForbiddenIslandFrame(String title) {
 		super(title);
-		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(WIDTH, HEIGHT);
+		add(new ForbiddenIslandPanel());
 		setVisible(true);
 	}
 }
