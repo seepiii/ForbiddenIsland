@@ -13,7 +13,8 @@ import java.util.Random;
 import java.util.Scanner;
  
 public class ForbiddenIslandPanel extends JPanel /*implements mouse*/ {
-	private BufferedImage treasureCardBack, floodCardBack;
+	private BufferedImage floodCardBack;
+	private BufferedImage tcb;
 	private Map<String, BufferedImage> gameSquares;
 	private int seed, waterLevel, numPlayers;
   //add other variables as needed
@@ -24,7 +25,7 @@ public class ForbiddenIslandPanel extends JPanel /*implements mouse*/ {
 		numPlayers=p;
 		//add everything else that happens in the constructor (written by sampadaa?)
 		try {
-			treasureCardBack = ImageIO.read(new File("TreasureCardBack.jpg"));
+			tcb = ImageIO.read(new File("TCB.jpg"));
 			//floodCardBack = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Flood_Card_Back@2x.png"));
 		}
 		catch(Exception E) {
@@ -33,7 +34,6 @@ public class ForbiddenIslandPanel extends JPanel /*implements mouse*/ {
 		}
 	}
 public void paint(Graphics g) {
-		g.drawImage(treasureCardBack, 450, 500, 100, 120, null);
+	g.drawImage(tcb,  0,  0,  900,  getHeight(),  null);
 	}
 }
-
