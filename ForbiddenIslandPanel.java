@@ -11,12 +11,13 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
- 
-public class ForbiddenIslandPanel extends JPanel /*implements mouse*/ {
+import java.awt.event.MouseListener;
+public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage floodCardBack;
-	private BufferedImage tcb;
+	private BufferedImage tcb, tcbs;
 	private Map<String, BufferedImage> gameSquares;
 	private int seed, waterLevel, numPlayers;
+	private BufferedImage choice1;
   //add other variables as needed
   
 	public ForbiddenIslandPanel(int s, int w, int p) {
@@ -25,15 +26,51 @@ public class ForbiddenIslandPanel extends JPanel /*implements mouse*/ {
 		numPlayers=p;
 		//add everything else that happens in the constructor (written by sampadaa?)
 		try {
-			tcb = ImageIO.read(new File("TCB.jpg"));
+			tcb = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Card_Back@2x (3).png"));
+			System.out.println("Constructor");
+			tcbs = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Card_BackSelect@2x.png"));
 			//floodCardBack = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Flood_Card_Back@2x.png"));
 		}
 		catch(Exception E) {
 			System.out.println("Exception Error");
 			return;
 		}
+		choice1 = tcb;
+		addMouseListener(this);
 	}
 public void paint(Graphics g) {
-	g.drawImage(tcb,  0,  0,  900,  getHeight(),  null);
+	g.drawImage(tcb,  450,  400,  101,  170,  null);
+	g.drawImage(choice1,  450,  400,  101,  170,  null);
+
+	System.out.println("Paint");
+
+	}
+public void mousePressed(MouseEvent e) { }
+public void mouseReleased(MouseEvent e) { }
+public void mouseEntered(MouseEvent e) { }
+public void mouseExited(MouseEvent e) { }
+public void mouseClicked(MouseEvent e) {
+	
+	//for (int r = 0; r < allNums.length; r++) {
+		//for (int c = 0; c < allNums[r].length; c++) {
+			int x = e.getX();
+			int y = e.getY();
+			int w = getWidth();
+			int h = getHeight();
+			System.out.println("loc is ("+x+","+y+")" + w + " " + h);
+			if (e.getButton() == e.BUTTON1) {
+				if (x >= 450 && x <= 550 && y >= 400 && y <= 565) {
+					if(choice1 == tcb) {
+						choice1 = tcbs;
+					}
+					else {
+						choice1 = tcb;
+					}
+				}			
+			
+		
+		repaint();
 	}
 }
+}
+
