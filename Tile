@@ -7,30 +7,31 @@ public class Tile {
 	private BufferedImage regular;
 	private BufferedImage flooded;
 	private BufferedImage state;
+	private int[] coordinates;
 	
 	public Tile (String n, BufferedImage reg, BufferedImage flood) {
 		isFlooded=false;
-		name=n;
-		regular=reg;
-		flooded=flood;
-		state=regular;
+		name = n;
+		regular = reg;
+		flooded = flood;
+		state = regular;
 	}
 	
 	public void shoreUp() {
 		if (isFlooded) {
-			isFlooded=false;
-			state=regular;
+			isFlooded = false;
+			state = regular;
 		}
 	}
 	
 	public void flood() {
-		isFlooded=true;
-		state=flooded;
+		isFlooded = true;
+		state = flooded;
 	}
 	
 	//get methods
 	public int[] getCoordinates() {
-		
+		return coordinates;		
 	}
 	public boolean isFlooded() {
 		return isFlooded;
