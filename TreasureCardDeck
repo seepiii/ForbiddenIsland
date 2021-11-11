@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class TreasureCardDeck {
-	private Stack<FloodCard> cards = new Stack<TreasureCard>();
-	private Stack<FloodCard> discarded = new Stack<TreasureCard>();
+	private Stack<TreasureCard> cards = new Stack<TreasureCard>();
+	private Stack<TreasureCard> discarded = new Stack<TreasureCard>();
 	
 	public TreasureCardDeck(Stack<TreasureCard> c, Stack<TreasureCard> d) {
 		cards = c;
@@ -20,7 +20,7 @@ public class TreasureCardDeck {
 	public TreasureCard drawCard() {
 		return cards.pop();
 	}
-	public addToDiscard(TreasureCard tc) {
+	public void addToDiscard(TreasureCard tc) {
 		discarded.push(tc);
 	}
 }
