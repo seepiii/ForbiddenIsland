@@ -9,12 +9,13 @@ public class Tile {
 	private BufferedImage state;
 	private int[] coordinates;
 	
-	public Tile (String n, BufferedImage reg, BufferedImage flood) {
+	public Tile (String n, BufferedImage reg, BufferedImage flood, int[] c) {
 		isFlooded=false;
 		name = n;
 		regular = reg;
 		flooded = flood;
 		state = regular;
+		coordinates = c;
 	}
 	
 	public void shoreUp() {
