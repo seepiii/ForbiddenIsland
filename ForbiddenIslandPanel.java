@@ -18,12 +18,13 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage foolsLanding, templeOfTheSun;
 	private BufferedImage waterLevelMeter, blueB;
 	private Map<String, BufferedImage> gameSquares;
-	private int seed, waterLevel, numPlayers;
+	private static int seed, numPlayers;
+	private static String waterLevel;
 	private BufferedImage choice1, choice2;
 	private Map<String, Boolean> actions;
   //add other variables as needed
   
-	public ForbiddenIslandPanel(int s, int w, int p) {
+	public ForbiddenIslandPanel(int s, String w, int p) {
 		seed=s;
 		waterLevel=w;
 		numPlayers=p;
@@ -52,6 +53,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		actions.put("Shore Up", false);
 		actions.put("Capture Treasure", false);
 		actions.put("Give Treasure", false);*/
+		//if ()
 
 	}
 public void paint(Graphics g) {
@@ -63,30 +65,39 @@ public void paint(Graphics g) {
 	g.drawImage(fcb,  1225,  534,  170,  101,  null); //-200 from width
 	g.drawImage(choice2,  1225,  534,  170,  101,  null); //-200 from width
 	g.drawImage(waterLevelMeter,  1420,  350,  125,  325,  null); //-200 from width
-	g.drawImage(blueB,  400,  1005,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  555,  1005,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  710,  1005,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  865,  1005,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  1020,  1005,  125,  50,  null); //-200 from width
-
+	g.drawImage(blueB,  400,  975,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  555,  975,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  710,  975,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  865,  975,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  1020,  975,  125,  50,  null); //-200 from width
+	
 	
 	System.out.println("Paint");
 
 	g.setFont(new Font("TimesRoman",Font.PLAIN,12));
-	g.drawString("SPECIAL ACTION", 405, 1032);
-	g.drawString("SHORE UP", 715, 1032);
-	g.drawString("CAPTURE TREASURE", 867, 1032);
-	g.drawString("GIVE TREASURE", 1025, 1032);
+	g.drawString("SPECIAL ACTION", 405, 1002);
+	g.drawString("SHORE UP", 715, 1002);
+	g.drawString("CAPTURE TREASURE", 867, 1002);
+	g.drawString("GIVE TREASURE", 1025, 1002);
 	g.setFont(new Font("TimesRoman",Font.PLAIN,25));
-	g.drawString("MOVE", 560, 1032);
+	g.drawString("MOVE", 560, 1002);
 	
-	
-	
-	
+	g.setFont(new Font("TimesRoman",Font.PLAIN,30));
+	g.drawString("Actions Left:", 320, 75);
+
+	g.drawString(waterLevel, 320, 100);
+
 		/*if (actions.get("Special Action") == true) {
 			
 		}*/
-	
+	g.setFont(new Font("TimesRoman",Font.PLAIN,25));
+	g.setColor(Color.RED);
+	for (int i = 0; i < 5; i++) {
+		if (Integer.toString(i).equals("3")) {
+			g.drawString(">", 1400, 570);
+
+		}
+	}
 	
 	}
 public void mousePressed(MouseEvent e) { }
