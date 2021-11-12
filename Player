@@ -24,8 +24,21 @@ public class Player {
 		
 	}
 	
-	public void move(int[] coords) {
+	public void moveRight(int[] coords) {
+		coordinates[0] += 259;
 		
+	}
+	
+	public void moveLeft(int[] coords) {
+		coordinates[0] -= 259;
+	}
+	
+	public void moveDown(int[] coords) {
+		coordinates[1] -= 259;
+	}
+	
+	public void moveUp(int[] coords) {
+		coordinates[1] += 259;
 	}
 	
 	public void addTreasureCard(TreasureCard tc) {
