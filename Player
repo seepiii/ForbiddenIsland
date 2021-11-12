@@ -14,8 +14,10 @@ public class Player {
 		
 	}
 	
-	public TreasureCard giveTreasureCard(TreasureCard tc) {
-		
+	public void giveTreasureCard(Player p, TreasureCard tc) {
+		int ind=cards.indexOf(tc);
+		TreasureCard temp=cards.remove(ind);
+		p.addTreasureCard(temp);
 	}
 	
 	public void shoreUp(ArrayList<Integer> coordinates) {
@@ -24,6 +26,10 @@ public class Player {
 	
 	public void move(ArrayList<Integer> coordinates) {
 		
+	}
+	
+	public void addTreasureCard(TreasureCard tc) {
+		cards.add(tc);
 	}
 	
 	//get methods
