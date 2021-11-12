@@ -20,11 +20,11 @@ public class Player {
 		p.addTreasureCard(temp);
 	}
 	
-	public void shoreUp(ArrayList<Integer> coordinates) {
+	public void shoreUp(int[] coords) {
 		
 	}
 	
-	public void move(ArrayList<Integer> coordinates) {
+	public void move(int[] coords) {
 		
 	}
 	
