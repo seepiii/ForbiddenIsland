@@ -20,7 +20,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage arrow;
 	private Map<String, BufferedImage> gameSquares;
 	private static int seed, numPlayers;
-	private static String waterLevel;
+	private static int waterLevel;
 	private BufferedImage choice1, choice2;
 	private Map<String, Boolean> actions;
   //add other variables as needed
@@ -87,7 +87,7 @@ public void paint(Graphics g) {
 	g.setFont(new Font("TimesRoman",Font.PLAIN,30));
 	g.drawString("Actions Left:", 320, 75);
 
-	g.drawString(waterLevel, 320, 100);
+	g.drawString(""+waterLevel, 320, 100);
 
 		/*if (actions.get("Special Action") == true) {
 			
