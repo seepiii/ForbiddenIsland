@@ -17,6 +17,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage tcb, tcbs;
 	private BufferedImage foolsLanding, templeOfTheSun;
 	private BufferedImage waterLevelMeter, blueB;
+	private BufferedImage arrow;
 	private Map<String, BufferedImage> gameSquares;
 	private static int seed, numPlayers;
 	private static String waterLevel;
@@ -39,6 +40,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			templeOfTheSun = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun.png"));
 			waterLevelMeter = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Water Level Meter.png"));
 			blueB = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Blue Background.png"));
+			arrow = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Weird Arrow.png"));
 
 		}
 		catch(Exception E) {
@@ -90,14 +92,28 @@ public void paint(Graphics g) {
 		/*if (actions.get("Special Action") == true) {
 			
 		}*/
-	g.setFont(new Font("TimesRoman",Font.PLAIN,25));
+	g.setFont(new Font("TimesRoman",Font.BOLD,25));
 	g.setColor(Color.RED);
-	for (int i = 0; i < 5; i++) {
-		if (Integer.toString(i).equals("3")) {
-			g.drawString(">", 1400, 570);
+	//for (int i = 0; i < 5; i++) { KEEP WHEN ADJUSTING create method that returns number it is and then print according to that after adjusting
+		if (waterLevel.equals("2")) {
+			g.drawImage(arrow,  1400,  615,  25,  15,  null); 
+			//g.drawString(">", 1400, 615);
 
 		}
-	}
+		if (waterLevel.equals("4")) {
+			g.drawImage(arrow,  1400,  473,  25,  15,  null); 
+			//g.drawString(">", 1400, 480);
+		}
+
+		if (waterLevel.equals("3")) {
+			g.drawImage(arrow,  1400,  557,  25,  15,  null); 
+			//g.drawString(">", 1400, 570);
+		}
+		if (waterLevel.equals("5")) {
+			g.drawImage(arrow,  1400,  425,  25,  15,  null); 
+			//g.drawString(">", 1400, 570);
+		}
+	//}
 	
 	}
 public void mousePressed(MouseEvent e) { }
