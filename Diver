@@ -1,0 +1,11 @@
+
+public class Diver extends Player{
+	private int[] coordinates;
+	
+	public Diver(int[] coords){
+		coordinates = coords;
+		
+	}
+	public move() {}
+	
+}
