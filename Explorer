@@ -8,7 +8,7 @@ public class Explorer extends Player{
 	
 	}
 	
-	public void shoreUp(ArrayList<Integer> coordinates) {
+	public void shoreUp(int[] coords) {
 		//not done 
 		//shoreUp will shoreUp a tile at the respective coordinates. when this is called, 
 		//the tile will flip over to not shored up or something like that
