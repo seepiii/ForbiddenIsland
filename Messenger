@@ -1,0 +1,12 @@
+
+public class Messenger extends Player {
+	
+	public Messenger(int[] coords) {
+		super(coords);
+	}
+	
+	public void giveTreasureCard(Player p, TreasureCard tc) {
+		p.addTreasureCard(tc);
+		this.getCards().remove(tc);
+	}
+}
