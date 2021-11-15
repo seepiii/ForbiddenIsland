@@ -1,0 +1,16 @@
+//each playerExplorer, Diver, Pilot, Navigator, Engineer or Messenger
+
+
+Explorer =1;
+Diver = 2;
+Pilot = 3;
+Navigator = 4;
+Engineer = 5;
+Messenger = 6;
+
+ArrayList<Integer> roleGenerator = new ArrayList<>();
+
+for(int i=0;i < 7;i++){
+
+
+}
