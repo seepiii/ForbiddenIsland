@@ -17,12 +17,14 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage tcb, tcbs;
 	private BufferedImage foolsLanding, templeOfTheSun;
 	private BufferedImage waterLevelMeter, blueB;
+	private BufferedImage blueTreasure, fireTreasure, airTreasure, earthTreasure;
 	private BufferedImage arrow;
 	private Map<String, BufferedImage> gameSquares;
 	private static int seed, numPlayers;
-	private static int waterLevel;
+	private static String waterLevel;
 	private BufferedImage choice1, choice2;
 	private Map<String, Boolean> actions;
+	private int x, y;
   //add other variables as needed
   
 	public ForbiddenIslandPanel(int s, String w, int p) {
@@ -41,7 +43,10 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			waterLevelMeter = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Water Level Meter.png"));
 			blueB = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Blue Background.png"));
 			arrow = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Weird Arrow.png"));
-
+			blueTreasure = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Blue Treasure.png"));
+			fireTreasure = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fire Treasure.png"));
+			airTreasure = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Air Treasure.png"));
+			earthTreasure = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Earth Treasure.png"));
 		}
 		catch(Exception E) {
 			System.out.println("Exception Error");
@@ -72,8 +77,11 @@ public void paint(Graphics g) {
 	g.drawImage(blueB,  710,  975,  125,  50,  null); //-200 from width
 	g.drawImage(blueB,  865,  975,  125,  50,  null); //-200 from width
 	g.drawImage(blueB,  1020,  975,  125,  50,  null); //-200 from width
-	
-	
+	g.drawImage(blueTreasure,  350,  70,  90,  100,  null);
+	g.drawImage(fireTreasure,  1150,  70,  90,  100,  null);
+	g.drawImage(airTreasure,  350,  790,  90,  100,  null);
+	g.drawImage(earthTreasure,  1150,  790,  90,  100,  null);
+
 	System.out.println("Paint");
 
 	g.setFont(new Font("TimesRoman",Font.PLAIN,12));
@@ -85,9 +93,9 @@ public void paint(Graphics g) {
 	g.drawString("MOVE", 560, 1002);
 	
 	g.setFont(new Font("TimesRoman",Font.PLAIN,30));
-	g.drawString("Actions Left:", 320, 75);
+	g.drawString("Actions Left:", 320, 50);
 
-	g.drawString(""+waterLevel, 320, 100);
+	g.drawString(waterLevel, 500, 50);
 
 		/*if (actions.get("Special Action") == true) {
 			
@@ -124,8 +132,8 @@ public void mouseClicked(MouseEvent e) {
 	
 	//for (int r = 0; r < allNums.length; r++) {
 		//for (int c = 0; c < allNums[r].length; c++) {
-			int x = e.getX();
-			int y = e.getY();
+			 x = e.getX();
+			 y = e.getY();
 			int w = getWidth();
 			int h = getHeight();
 			System.out.println("loc is ("+x+","+y+")" + w + " " + h);
