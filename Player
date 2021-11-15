@@ -10,10 +10,6 @@ public class Player {
 		coordinates=coords;
 	}
 	
-	public void captureTreasure() {
-		
-	}
-	
 	public void giveTreasureCard(Player p, TreasureCard tc) {
 		int ind=cards.indexOf(tc);
 		TreasureCard temp=cards.remove(ind);
