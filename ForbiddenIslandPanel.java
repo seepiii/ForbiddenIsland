@@ -19,10 +19,14 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage waterLevelMeter, blueB;
 	private BufferedImage blueTreasure, fireTreasure, airTreasure, earthTreasure;
 	private BufferedImage arrow;
+	private BufferedImage engTile;	
+	private BufferedImage diver, diverSelect;
 	private Map<String, BufferedImage> gameSquares;
 	private static int seed, numPlayers;
 	private static String waterLevel;
 	private BufferedImage choice1, choice2;
+	private BufferedImage p1, p2, p3, p4;
+
 	private Map<String, Boolean> actions;
 	private int x, y;
   //add other variables as needed
@@ -47,6 +51,10 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			fireTreasure = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fire Treasure.png"));
 			airTreasure = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Air Treasure.png"));
 			earthTreasure = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Earth Treasure.png"));
+			engTile = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Engineer Icon.png"));
+			diver = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Diver Icon.png"));
+			diverSelect = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Diver Icon Select.png"));
+
 		}
 		catch(Exception E) {
 			System.out.println("Exception Error");
@@ -54,6 +62,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		}
 		choice1 = tcb;
 		choice2 = fcb;
+		p1 = diver;
 		addMouseListener(this);
 		/*actions.put("Special Action", false);
 		actions.put("Move", false);
@@ -81,7 +90,11 @@ public void paint(Graphics g) {
 	g.drawImage(fireTreasure,  1150,  70,  90,  100,  null);
 	g.drawImage(airTreasure,  350,  790,  90,  100,  null);
 	g.drawImage(earthTreasure,  1150,  790,  90,  100,  null);
+	g.drawImage(engTile,  1300,  680,  90,  90,  null);
+	//g.drawImage(diver,  590,  20,  60,  87,  null);
+	g.drawImage(p1,  590,  20,  60,  87,  null);
 
+	
 	System.out.println("Paint");
 
 	g.setFont(new Font("TimesRoman",Font.PLAIN,12));
@@ -154,8 +167,16 @@ public void mouseClicked(MouseEvent e) {
 						choice2 = fcb;
 					}
 				}
-				if (x >= 400 && x <= 550 && y >= 1030) {
+				if (x >= 400 && x < 550 && y >= 1030) {
 					
+				}
+				if (x >= 550 && x <= 680 && y >= 970) {
+					if(p1 == diver) {
+						p1 = diverSelect;
+					}
+					else {
+						p1 = diver;
+					}
 				}
 				}
 		repaint();
