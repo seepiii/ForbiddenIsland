@@ -4,9 +4,8 @@ public class TreasureCardDeck {
 	private Stack<TreasureCard> cards = new Stack<TreasureCard>();
 	private Stack<TreasureCard> discarded = new Stack<TreasureCard>();
 	
-	public TreasureCardDeck(Stack<TreasureCard> c, Stack<TreasureCard> d) {
-		cards = c;
-		discarded = d;
+	public TreasureCardDeck() {
+		
 	}
 	
 	public Stack getCards() {
