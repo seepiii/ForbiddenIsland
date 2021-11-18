@@ -26,10 +26,13 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private static String waterLevel;
 	private BufferedImage choice1, choice2;
 	private BufferedImage p1, p2, p3, p4;
-
+	
+	private int[] pl1coords;
+	private boolean[] playerTurn;
 	private Map<String, Boolean> actions;
 	private int x, y;
   //add other variables as needed
+	private boolean moveTurn;
   
 	public ForbiddenIslandPanel(int s, String w, int p) {
 		seed=s;
@@ -70,7 +73,14 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		actions.put("Capture Treasure", false);
 		actions.put("Give Treasure", false);*/
 		//if ()
-
+		/*playerTurn = new boolean[4];
+		for (int i = 0; i < 4; i++) {
+			playerTurn[i] = false;
+		}*/
+		moveTurn = false;
+		pl1coords = new int[2];
+		pl1coords[0] = 590;
+		pl1coords[1] = 20;
 	}
 public void paint(Graphics g) {
 	g.drawImage(tcb,  60,  534,  170,  101,  null);
@@ -92,7 +102,7 @@ public void paint(Graphics g) {
 	g.drawImage(earthTreasure,  1150,  790,  90,  100,  null);
 	g.drawImage(engTile,  1300,  680,  90,  90,  null);
 	//g.drawImage(diver,  590,  20,  60,  87,  null);
-	g.drawImage(p1,  590,  20,  60,  87,  null);
+	g.drawImage(p1,  pl1coords[0],  pl1coords[1],  60,  87,  null);
 
 	
 	System.out.println("Paint");
@@ -173,10 +183,17 @@ public void mouseClicked(MouseEvent e) {
 				if (x >= 550 && x <= 680 && y >= 970) {
 					if(p1 == diver) {
 						p1 = diverSelect;
+						moveTurn = true;
+						
 					}
 					else {
 						p1 = diver;
+						moveTurn = false;
 					}
+				}
+				if (moveTurn == true && y < 900) {
+					pl1coords[0] = x;
+					pl1coords[1] = y;
 				}
 				}
 		repaint();
