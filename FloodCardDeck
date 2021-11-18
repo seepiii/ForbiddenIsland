@@ -4,9 +4,8 @@ public class FloodCardDeck {
 	private Stack<FloodCard> cards = new Stack<FloodCard>();
 	private Stack<FloodCard> discarded = new Stack<FloodCard>();
 	
-	public FloodCardDeck(Stack<FloodCard> c, Stack<FloodCard> d) {
-		cards = c;
-		discarded = d;
+	public FloodCardDeck() {
+		
 	}
 	
 	public Stack getCards() {
