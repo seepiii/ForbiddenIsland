@@ -33,11 +33,16 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private int x, y;
   //add other variables as needed
 	private boolean moveTurn;
+	
+	private String currentMoveType;
+	
+	
+	private String[][] board;
   
-	public ForbiddenIslandPanel(int s, int w) {
+	public ForbiddenIslandPanel(int s, String w, int p) {
 		seed=s;
 		waterLevel=w;
-// 		numPlayers=p;
+		numPlayers=p;
 		//add everything else that happens in the constructor (written by sampadaa?)
 		try {
 			tcb = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Card_Back@2x (3).png"));
@@ -78,9 +83,30 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			playerTurn[i] = false;
 		}*/
 		moveTurn = false;
+		currentMoveType = "";
 		pl1coords = new int[2];
 		pl1coords[0] = 501;
 		pl1coords[1] = 20;
+		
+		
+	board = new String[6][6];
+	for (int r = 0; r < board.length; r++) {
+		for (int c = 0; c < board[r].length; c++) {
+			board[r][c] = "O";
+		}
+	}
+	board[0][0] = "X";
+	board[0][1] = "X";
+	board[1][0] = "X";
+	board[1][5] = "X";
+	board[0][4] = "X";
+	board[0][5] = "X";
+	board[4][0] = "X";
+	board[5][0] = "X";
+	board[5][1] = "X";
+	board[5][4] = "X";
+	board[5][5] = "X";
+	board[4][5] = "X";
 	}
 public void paint(Graphics g) {
 	g.drawImage(tcb,  60,  314,  130,  77,  null);
@@ -106,7 +132,6 @@ public void paint(Graphics g) {
 
 	
 	System.out.println("Paint");
-
 	g.setFont(new Font("TimesRoman",Font.PLAIN,12));
 	g.drawString("SPECIAL ACTION", 405, 697);
 	g.drawString("SHORE UP", 715, 697);
@@ -194,6 +219,7 @@ public void mouseClicked(MouseEvent e) {
 				if (moveTurn == true && y < 595) {
 					pl1coords[0] = x;
 					pl1coords[1] = y;
+					currentMoveType = "move"; 
 				}
 				}
 		repaint();
