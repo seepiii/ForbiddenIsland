@@ -17,7 +17,7 @@ public class ForbiddenIslandRunner {
 // 			JOptionPane.showMessageDialog(null, "Invalid input. Please submit a number within range.");
 // 			numPlayers = Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter the number of players. (2 - 4)","Number of Players",JOptionPane.QUESTION_MESSAGE));
 }
-ForbiddenIslandFrame b = new ForbiddenIslandFrame("ForbiddenIsland", seed, waterLevel);
+ForbiddenIslandFrame b = new ForbiddenIslandFrame("ForbiddenIsland", seed, newWaterLevel);
 }
 	public static int getWaterLevel() {
 		return waterLevel;
