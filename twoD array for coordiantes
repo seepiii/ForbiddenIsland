@@ -2,13 +2,12 @@
 
 public class position{
 		
-	int[] xCoords = {1234,1234,1234,1234,1234,1234};
-	int[] yCoords = {1234,1234,1234,1234,1234,1234};
+	int[] xCoords = {260,380,500,620,740,860};
+	int[] yCoords = {13,121,229,337,445,553};
 	
 	public int[] position(int row,int col){
 		intx = xCoords[row];
 		inty = yCoords[col];
-		A
 		}
 	
 	public int getRow() {
