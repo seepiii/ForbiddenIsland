@@ -23,7 +23,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage diver, diverSelect;
 	private Map<String, BufferedImage> gameSquares;
 	private static int seed, numPlayers;
-	private static String waterLevel;
+	private static int waterLevel;
 	private BufferedImage choice1, choice2;
 	private BufferedImage p1, p2, p3, p4;
 	
@@ -38,11 +38,16 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	
 	
 	private String[][] board;
+	private int[] xTileCoords= {260, 380, 500, 620, 740, 860};
+	private int[] yTileCoords = {13, 121, 229, 337, 445, 553};
+	
+	
+	private ArrayList<BufferedImage> tiles = new ArrayList<>();
   
-	public ForbiddenIslandPanel(int s, String w, int p) {
+	public ForbiddenIslandPanel(int s, int w) {
 		seed=s;
 		waterLevel=w;
-		numPlayers=p;
+		
 		//add everything else that happens in the constructor (written by sampadaa?)
 		try {
 			tcb = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Card_Back@2x (3).png"));
@@ -107,6 +112,11 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	board[5][4] = "X";
 	board[5][5] = "X";
 	board[4][5] = "X";
+	
+	
+	/*xTileCoords = new int[6];
+	xTileCoords = {260, 380, 500, 620, 740, 860};*/
+	
 	}
 public void paint(Graphics g) {
 	g.drawImage(tcb,  60,  314,  130,  77,  null);
@@ -143,7 +153,7 @@ public void paint(Graphics g) {
 	g.setFont(new Font("TimesRoman",Font.PLAIN,30));
 	g.drawString("Actions Left:", 320, 50);
 
-	g.drawString(waterLevel, 500, 50);
+	g.drawString(""+waterLevel, 500, 50);
 
 		/*if (actions.get("Special Action") == true) {
 			
@@ -151,21 +161,21 @@ public void paint(Graphics g) {
 	g.setFont(new Font("TimesRoman",Font.BOLD,25));
 	g.setColor(Color.RED);
 	//for (int i = 0; i < 5; i++) { KEEP WHEN ADJUSTING create method that returns number it is and then print according to that after adjusting
-		if (waterLevel.equals("2")) {
+		if (waterLevel==2) {
 			g.drawImage(arrow,  1180,  445,  25,  15,  null); 
 			//g.drawString(">", 1400, 615);
 
 		}
-		if (waterLevel.equals("4")) {
+		if (waterLevel==4) {
 			g.drawImage(arrow,  1180,  303,  25,  15,  null); 
 			//g.drawString(">", 1400, 480);
 		}
 
-		if (waterLevel.equals("3")) {
+		if (waterLevel==3) {
 			g.drawImage(arrow,  1180,  387,  25,  15,  null); 
 			//g.drawString(">", 1400, 570);
 		}
-		if (waterLevel.equals("5")) {
+		if (waterLevel==5) {
 			g.drawImage(arrow,  1180,  255,  25,  15,  null); 
 			//g.drawString(">", 1400, 570);
 		}
