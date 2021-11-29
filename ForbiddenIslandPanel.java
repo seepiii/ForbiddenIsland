@@ -79,41 +79,41 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		}*/
 		moveTurn = false;
 		pl1coords = new int[2];
-		pl1coords[0] = 590;
+		pl1coords[0] = 501;
 		pl1coords[1] = 20;
 	}
 public void paint(Graphics g) {
-	g.drawImage(tcb,  60,  534,  170,  101,  null);
+	g.drawImage(tcb,  60,  314,  130,  77,  null);
 	//g.drawImage(foolsLanding,  589,  13,  111,  117,  null); //-200 from width
-	g.drawImage(choice1,  60,  534,  170,  101,  null);
-	g.drawImage(foolsLanding,  589,  13,  111,  117,  null); //-200 from width
-	g.drawImage(templeOfTheSun,  737,  13,  111,  117,  null); //-200 from width
-	g.drawImage(fcb,  1225,  534,  170,  101,  null); //-200 from width
-	g.drawImage(choice2,  1225,  534,  170,  101,  null); //-200 from width
-	g.drawImage(waterLevelMeter,  1420,  350,  125,  325,  null); //-200 from width
-	g.drawImage(blueB,  400,  975,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  555,  975,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  710,  975,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  865,  975,  125,  50,  null); //-200 from width
-	g.drawImage(blueB,  1020,  975,  125,  50,  null); //-200 from width
+	g.drawImage(choice1,  60,  314,  130,  77,  null);
+	g.drawImage(foolsLanding,  500,  13,  90,  95,  null); //-200 from width
+	g.drawImage(templeOfTheSun,  620,  13,  90,  95,  null); //-200 from width
+	g.drawImage(fcb,  1000,  314,  130,  77,  null); //-200 from width
+	g.drawImage(choice2,  1000,  314,  130,  77,  null); //-200 from width
+	g.drawImage(waterLevelMeter,  1200,  180,  125,  325,  null); //-200 from width
+	g.drawImage(blueB,  400,  670,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  555,  670,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  710,  670,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  865,  670,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  1020,  670,  125,  50,  null); //-200 from width
 	g.drawImage(blueTreasure,  350,  70,  90,  100,  null);
-	g.drawImage(fireTreasure,  1150,  70,  90,  100,  null);
+	g.drawImage(fireTreasure,  800,  70,  90,  100,  null);
 	g.drawImage(airTreasure,  350,  790,  90,  100,  null);
 	g.drawImage(earthTreasure,  1150,  790,  90,  100,  null);
 	g.drawImage(engTile,  1300,  680,  90,  90,  null);
 	//g.drawImage(diver,  590,  20,  60,  87,  null);
-	g.drawImage(p1,  pl1coords[0],  pl1coords[1],  60,  87,  null);
+	g.drawImage(p1,  pl1coords[0],  pl1coords[1],  49,  71,  null);
 
 	
 	System.out.println("Paint");
 
 	g.setFont(new Font("TimesRoman",Font.PLAIN,12));
-	g.drawString("SPECIAL ACTION", 405, 1002);
-	g.drawString("SHORE UP", 715, 1002);
-	g.drawString("CAPTURE TREASURE", 867, 1002);
-	g.drawString("GIVE TREASURE", 1025, 1002);
+	g.drawString("SPECIAL ACTION", 405, 697);
+	g.drawString("SHORE UP", 715, 697);
+	g.drawString("CAPTURE TREASURE", 867, 697);
+	g.drawString("GIVE TREASURE", 1025, 697);
 	g.setFont(new Font("TimesRoman",Font.PLAIN,25));
-	g.drawString("MOVE", 560, 1002);
+	g.drawString("MOVE", 560, 697);
 	
 	g.setFont(new Font("TimesRoman",Font.PLAIN,30));
 	g.drawString("Actions Left:", 320, 50);
@@ -127,21 +127,21 @@ public void paint(Graphics g) {
 	g.setColor(Color.RED);
 	//for (int i = 0; i < 5; i++) { KEEP WHEN ADJUSTING create method that returns number it is and then print according to that after adjusting
 		if (waterLevel.equals("2")) {
-			g.drawImage(arrow,  1400,  615,  25,  15,  null); 
+			g.drawImage(arrow,  1180,  445,  25,  15,  null); 
 			//g.drawString(">", 1400, 615);
 
 		}
 		if (waterLevel.equals("4")) {
-			g.drawImage(arrow,  1400,  473,  25,  15,  null); 
+			g.drawImage(arrow,  1180,  303,  25,  15,  null); 
 			//g.drawString(">", 1400, 480);
 		}
 
 		if (waterLevel.equals("3")) {
-			g.drawImage(arrow,  1400,  557,  25,  15,  null); 
+			g.drawImage(arrow,  1180,  387,  25,  15,  null); 
 			//g.drawString(">", 1400, 570);
 		}
 		if (waterLevel.equals("5")) {
-			g.drawImage(arrow,  1400,  425,  25,  15,  null); 
+			g.drawImage(arrow,  1180,  255,  25,  15,  null); 
 			//g.drawString(">", 1400, 570);
 		}
 	//}
@@ -161,7 +161,7 @@ public void mouseClicked(MouseEvent e) {
 			int h = getHeight();
 			System.out.println("loc is ("+x+","+y+")" + w + " " + h);
 			if (e.getButton() == e.BUTTON1) {
-				if (x >= 60 && x <= 230 && y >= 534 && y <= 634) {
+				if (x >= 60 && x <= 190 && y >= 314 && y <= 414) {
 					if(choice1 == tcb) {
 						choice1 = tcbs;
 					}
@@ -169,7 +169,7 @@ public void mouseClicked(MouseEvent e) {
 						choice1 = tcb;
 					}
 				}			
-				if (x >= 1225 && x <= 1395 && y >= 534 && y <= 634) {
+				if (x >= 1000 && x <= 1130 && y >= 314 && y <= 414) {
 					if(choice2 == fcb) {
 						choice2 = fcbs;
 					}
@@ -180,7 +180,7 @@ public void mouseClicked(MouseEvent e) {
 				if (x >= 400 && x < 550 && y >= 1030) {
 					
 				}
-				if (x >= 550 && x <= 680 && y >= 970) {
+				if (x >= 550 && x <= 680 && y >= 665) {
 					if(p1 == diver) {
 						p1 = diverSelect;
 						moveTurn = true;
@@ -191,7 +191,7 @@ public void mouseClicked(MouseEvent e) {
 						moveTurn = false;
 					}
 				}
-				if (moveTurn == true && y < 900) {
+				if (moveTurn == true && y < 595) {
 					pl1coords[0] = x;
 					pl1coords[1] = y;
 				}
@@ -199,5 +199,3 @@ public void mouseClicked(MouseEvent e) {
 		repaint();
 	}
 }
-
-
