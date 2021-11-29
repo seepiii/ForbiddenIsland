@@ -34,10 +34,10 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
   //add other variables as needed
 	private boolean moveTurn;
   
-	public ForbiddenIslandPanel(int s, String w, int p) {
+	public ForbiddenIslandPanel(int s, int w) {
 		seed=s;
 		waterLevel=w;
-		numPlayers=p;
+// 		numPlayers=p;
 		//add everything else that happens in the constructor (written by sampadaa?)
 		try {
 			tcb = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Card_Back@2x (3).png"));
