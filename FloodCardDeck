@@ -20,4 +20,8 @@ public class FloodCardDeck {
 	public FloodCard drawCard() {
 		return cards.pop();
 	}
+	
+	public void discard(FloodCard fc) {
+		discarded.push(fc);
+	}
 }
