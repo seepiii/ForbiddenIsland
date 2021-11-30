@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Stack;
 import java.awt.event.MouseListener;
 public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage fcb, fcbs;
@@ -36,6 +37,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	
 	private String currentMoveType;
 	
+	private BufferedImage fireTC, earthTC, waterTC, airTC, watersRiseTC, sandbagTC, heliTC;
 	
 	private String[][] board;
 	private int[] xTileCoords= {260, 380, 500, 620, 740, 860};
@@ -44,6 +46,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	
 	private ArrayList<BufferedImage> tiles = new ArrayList<>();
   
+	private Stack<BufferedImage> treasureCards = new Stack<>();;
 	public ForbiddenIslandPanel(int s, int w) {
 		seed=s;
 		waterLevel=w;
@@ -67,7 +70,14 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			engTile = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Engineer Icon.png"));
 			diver = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Diver Icon.png"));
 			diverSelect = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Diver Icon Select.png"));
-
+			fireTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fire Treasure Card.png"));
+			earthTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Earth Treasure Card.png"));
+			waterTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Ocean Treasure Card.png"));
+			airTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Wind Treasure Card.png"));
+			watersRiseTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Waters Rise TC.png"));
+			sandbagTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Sandbag TC.png"));
+			heliTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Helicopter Lift.png"));
+				//fillUp(treasureCards);
 		}
 		catch(Exception E) {
 			System.out.println("Exception Error");
@@ -113,10 +123,62 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	board[5][5] = "X";
 	board[4][5] = "X";
 	
-	
+	//treasureCards = new Stack<>();
+	//fillUp(treasureCards);
 	/*xTileCoords = new int[6];
 	xTileCoords = {260, 380, 500, 620, 740, 860};*/
 	
+	}
+	public void fillUp (Stack<BufferedImage> input) {
+		int cnt = 0;
+		int cntF = 0;
+		int cntW = 0;
+		int cntE = 0;
+		int cntA = 0;
+		int cntWR = 0;
+		int cntS = 0;
+		int cntH = 0;
+		Random rand=new Random(seed);
+		while (cnt < 33) {
+		
+		int temp=rand.nextInt(7)+1;
+		
+		if (temp == 1 && cntF < 5) {
+			input.push(fireTC);
+			cntF++;
+			cnt++;
+		}
+		if (temp == 2 && cntW < 5) {
+			input.push(waterTC);
+			cntW++;
+			cnt++;
+		}
+		if (temp == 3 && cntE < 5) {
+			input.push(earthTC);
+			cntE++;
+			cnt++;
+		}
+		if (temp == 4 && cntA < 5) {
+			input.push(airTC);
+			cntA++;
+			cnt++;
+		}
+		if (temp == 5 && cntWR < 3) {
+			input.push(watersRiseTC);
+			cntWR++;
+			cnt++;
+		}
+		if (temp == 6 && cntS < 2) {
+			input.push(sandbagTC);
+			cntS++;
+			cnt++;
+		}
+		if (temp == 7 && cntH < 3) {
+			input.push(heliTC);
+			cntH++;
+			cnt++;
+		}
+		}
 	}
 public void paint(Graphics g) {
 	g.drawImage(tcb,  60,  314,  130,  77,  null);
@@ -140,6 +202,8 @@ public void paint(Graphics g) {
 	//g.drawImage(diver,  590,  20,  60,  87,  null);
 	g.drawImage(p1,  pl1coords[0],  pl1coords[1],  49,  71,  null);
 
+	g.drawImage(blueB,  245,  670,  125,  50,  null); //-200 from width
+
 	
 	System.out.println("Paint");
 	g.setFont(new Font("TimesRoman",Font.PLAIN,12));
@@ -149,7 +213,7 @@ public void paint(Graphics g) {
 	g.drawString("GIVE TREASURE", 1025, 697);
 	g.setFont(new Font("TimesRoman",Font.PLAIN,25));
 	g.drawString("MOVE", 560, 697);
-	
+	g.drawString("DRAW", 250, 697);
 	g.setFont(new Font("TimesRoman",Font.PLAIN,30));
 	g.drawString("Actions Left:", 320, 50);
 
@@ -182,6 +246,8 @@ public void paint(Graphics g) {
 	//}
 	
 	}
+
+
 public void mousePressed(MouseEvent e) { }
 public void mouseReleased(MouseEvent e) { }
 public void mouseEntered(MouseEvent e) { }
