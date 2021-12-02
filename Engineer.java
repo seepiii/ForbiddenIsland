@@ -10,4 +10,11 @@ public class Engineer {
 			//not done with shore up stuff, 
 			
 		}
+	
+	public void giveTreasureCard(Player p, TreasureCard tc) {
+		p.addTreasureCard(tc);
+		this.getCards().remove(tc);
+	}
+	
+	
 }
