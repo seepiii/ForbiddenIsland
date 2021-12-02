@@ -5,7 +5,6 @@ public class Pilot extends Player{
 		coordinates = coords;
 		
 	}
-	public move() {}
 	
 	public void giveTreasureCard(Player p, TreasureCard tc) {
 		p.addTreasureCard(tc);
