@@ -231,8 +231,8 @@ public void paint(Graphics g) {
 	//g.drawString(""+waterLevel, 485, 50); print actions left instead
 
 	
-	if (toPush == true) {
-		g.drawImage(treasureCards.pop(), 400, 314, 77, 130, null);
+	if (toPush == true && y >= 660 && x < 400 && x >= 245) {
+		g.drawImage(gamestate.drawTreasureCard().getImage(), 400, 314, 77, 130, null);
 	}
 		/*if (actions.get("Special Action") == true) {
 			
@@ -332,6 +332,9 @@ public void mouseClicked(MouseEvent e) {
 				}
 				if (tcDraw == true && x < 400 && x >= 245 && y >= 665) {
 					toPush = true;
+				}
+				if (tcDraw == false && x < 400 && x >= 245 && y >= 665) {
+					toPush = false;
 				}
 				}
 		repaint();
