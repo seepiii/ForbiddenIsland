@@ -95,8 +95,9 @@ public class GameState {
 		return tc;
 	}
 	//should draw the number of cards and make the corresponding tile flooded or sunk and change the letter in board
-	public void drawFloodCards() {
-		
+	public FloodCard drawFloodCard() {
+		FloodCard fc = floodCards.drawCard();
+		return fc;
 	}
 	
 	//get methods

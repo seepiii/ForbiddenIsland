@@ -34,7 +34,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private int x, y;
   //add other variables as needed
 	private boolean moveTurn;
-	private boolean tcDraw;
+	private boolean tcDraw, fcDraw;
 	private String currentMoveType;
 	
 	private BufferedImage fireTC, earthTC, waterTC, airTC, watersRiseTC, sandbagTC, heliTC;
@@ -47,7 +47,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private ArrayList<BufferedImage> tiles = new ArrayList<>();
   
 	private Stack<BufferedImage> treasureCards = new Stack<>();
-	private boolean toPush;
+	private boolean toPush, toPushFlood;
 	
 	private GameState gamestate;
 	
@@ -103,6 +103,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		moveTurn = false;
 		tcDraw = false;
 		toPush = false;
+		toPushFlood = false;
 		currentMoveType = "";
 		pl1coords = new int[2];
 		pl1coords[0] = 501;
@@ -192,7 +193,9 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		return input;
 	}*/
 public void paint(Graphics g) {
-	g.drawImage(tcb,  60,  314,  130,  77,  null);
+	/*g.setColor(Color.WHITE);
+	g.fillRect(0,0,1350,740);
+	g.drawImage(tcb,  60,  314,  130,  77,  null);*/
 	//g.drawImage(foolsLanding,  589,  13,  111,  117,  null); //-200 from width
 	g.drawImage(choice1,  60,  314,  130,  77,  null);
 	g.drawImage(foolsLanding,  500,  13,  90,  95,  null); //-200 from width
@@ -233,6 +236,9 @@ public void paint(Graphics g) {
 	
 	if (toPush == true && y >= 660 && x < 400 && x >= 245) {
 		g.drawImage(gamestate.drawTreasureCard().getImage(), 400, 314, 77, 130, null);
+	}
+	if (toPushFlood == true && y >= 660 && x < 400 && x >= 245) {
+		g.drawImage(gamestate.drawFloodCard().getImage(), 600, 314, 77, 130, null);
 	}
 		/*if (actions.get("Special Action") == true) {
 			
@@ -306,9 +312,11 @@ public void mouseClicked(MouseEvent e) {
 				if (x >= 1000 && x <= 1130 && y >= 314 && y <= 414) {
 					if(choice2 == fcb) {
 						choice2 = fcbs;
+						fcDraw = true;
 					}
 					else {
 						choice2 = fcb;
+						fcDraw = false;
 					}
 				}
 				if (x >= 400 && x < 550 && y >= 1030) {
@@ -336,6 +344,14 @@ public void mouseClicked(MouseEvent e) {
 				if (tcDraw == false && x < 400 && x >= 245 && y >= 665) {
 					toPush = false;
 				}
+				
+				if (fcDraw == true && x < 400 && x >= 245 && y >= 665) {
+					toPushFlood = true;
+				}
+				if (fcDraw == false && x < 400 && x >= 245 && y >= 665) {
+					toPushFlood = false;
+				}
+				
 				}
 		repaint();
 	}
