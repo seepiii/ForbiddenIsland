@@ -59,6 +59,9 @@ public class TreasureCardDeck {
 		return discarded.peek();
 	}
 	public TreasureCard drawCard() {
+		if (cards.isEmpty()) {
+			reshuffle();
+		}
 		return cards.pop();
 	}
 	public void addToDiscard(TreasureCard tc) {
