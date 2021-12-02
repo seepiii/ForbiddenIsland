@@ -13,4 +13,9 @@ public class Explorer extends Player{
 		//shoreUp will shoreUp a tile at the respective coordinates. when this is called, 
 		//the tile will flip over to not shored up or something like that
 	}
+	
+	public void giveTreasureCard(Player p, TreasureCard tc) {
+		p.addTreasureCard(tc);
+		this.getCards().remove(tc);
+	}
 }
