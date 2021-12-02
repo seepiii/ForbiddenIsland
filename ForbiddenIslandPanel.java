@@ -23,8 +23,8 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage engTile;	
 	private BufferedImage diver, diverSelect;
 	private Map<String, BufferedImage> gameSquares;
-	private static int seed, numPlayers;
-	private static int waterLevel;
+//	private static int seed, numPlayers;
+//	private static int waterLevel;
 	private BufferedImage choice1, choice2;
 	private BufferedImage p1, p2, p3, p4;
 	
@@ -34,7 +34,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private int x, y;
   //add other variables as needed
 	private boolean moveTurn;
-	
+	private boolean tcDraw;
 	private String currentMoveType;
 	
 	private BufferedImage fireTC, earthTC, waterTC, airTC, watersRiseTC, sandbagTC, heliTC;
@@ -46,20 +46,24 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	
 	private ArrayList<BufferedImage> tiles = new ArrayList<>();
   
-	private Stack<BufferedImage> treasureCards = new Stack<>();;
-	public ForbiddenIslandPanel(int s, int w) {
-		seed=s;
-		waterLevel=w;
-		
+	private Stack<BufferedImage> treasureCards = new Stack<>();
+	private boolean toPush;
+	
+	private GameState gamestate;
+	
+	public ForbiddenIslandPanel(String w) {
+//		seed=s;
+		gamestate=new GameState(w);
+		//treasureCards = gs.fillUp();
 		//add everything else that happens in the constructor (written by sampadaa?)
 		try {
 			tcb = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Card_Back@2x (3).png"));
 			System.out.println("Constructor");
 			tcbs = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Card_BackSelect@2x.png"));
 			foolsLanding = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Foo's Landing.png"));
+			templeOfTheSun = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun.png"));
 			fcb = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Flood Card Back.png"));
 			fcbs = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Flood Card Back Select.png"));
-			templeOfTheSun = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun.png"));
 			waterLevelMeter = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Water Level Meter.png"));
 			blueB = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Blue Background.png"));
 			arrow = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Weird Arrow.png"));
@@ -77,7 +81,6 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			watersRiseTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Waters Rise TC.png"));
 			sandbagTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Sandbag TC.png"));
 			heliTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Helicopter Lift.png"));
-				//fillUp(treasureCards);
 		}
 		catch(Exception E) {
 			System.out.println("Exception Error");
@@ -98,6 +101,8 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			playerTurn[i] = false;
 		}*/
 		moveTurn = false;
+		tcDraw = false;
+		toPush = false;
 		currentMoveType = "";
 		pl1coords = new int[2];
 		pl1coords[0] = 501;
@@ -127,9 +132,14 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	//fillUp(treasureCards);
 	/*xTileCoords = new int[6];
 	xTileCoords = {260, 380, 500, 620, 740, 860};*/
-	
+	//treasureCards=fillUp();
+	//Stack<BufferedImage> tem = fillUp();
+	/*for (int i = 0; i < fillUp().size(); i++) {
+		treasureCards.push(fillUp().pop());
+	}*/
 	}
-	public void fillUp (Stack<BufferedImage> input) {
+	/*public Stack<BufferedImage> fillUp () {
+		Stack<BufferedImage> input=new Stack<BufferedImage>();
 		int cnt = 0;
 		int cntF = 0;
 		int cntW = 0;
@@ -179,7 +189,8 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			cnt++;
 		}
 		}
-	}
+		return input;
+	}*/
 public void paint(Graphics g) {
 	g.drawImage(tcb,  60,  314,  130,  77,  null);
 	//g.drawImage(foolsLanding,  589,  13,  111,  117,  null); //-200 from width
@@ -196,8 +207,8 @@ public void paint(Graphics g) {
 	g.drawImage(blueB,  1020,  670,  125,  50,  null); //-200 from width
 	g.drawImage(blueTreasure,  350,  70,  90,  100,  null);
 	g.drawImage(fireTreasure,  800,  70,  90,  100,  null);
-	g.drawImage(airTreasure,  350,  790,  90,  100,  null);
-	g.drawImage(earthTreasure,  1150,  790,  90,  100,  null);
+	g.drawImage(airTreasure,  350,  470,  90,  100,  null);
+	g.drawImage(earthTreasure,  800,  470,  90,  100,  null);
 	g.drawImage(engTile,  1300,  680,  90,  90,  null);
 	//g.drawImage(diver,  590,  20,  60,  87,  null);
 	g.drawImage(p1,  pl1coords[0],  pl1coords[1],  49,  71,  null);
@@ -217,32 +228,52 @@ public void paint(Graphics g) {
 	g.setFont(new Font("TimesRoman",Font.PLAIN,30));
 	g.drawString("Actions Left:", 320, 50);
 
-	g.drawString(""+waterLevel, 500, 50);
+	//g.drawString(""+waterLevel, 485, 50); print actions left instead
 
+	
+	if (toPush == true) {
+		g.drawImage(treasureCards.pop(), 400, 314, 77, 130, null);
+	}
 		/*if (actions.get("Special Action") == true) {
 			
 		}*/
 	g.setFont(new Font("TimesRoman",Font.BOLD,25));
 	g.setColor(Color.RED);
 	//for (int i = 0; i < 5; i++) { KEEP WHEN ADJUSTING create method that returns number it is and then print according to that after adjusting
-		if (waterLevel==2) {
-			g.drawImage(arrow,  1180,  445,  25,  15,  null); 
-			//g.drawString(">", 1400, 615);
-
-		}
-		if (waterLevel==4) {
-			g.drawImage(arrow,  1180,  303,  25,  15,  null); 
-			//g.drawString(">", 1400, 480);
-		}
-
-		if (waterLevel==3) {
-			g.drawImage(arrow,  1180,  387,  25,  15,  null); 
-			//g.drawString(">", 1400, 570);
-		}
-		if (waterLevel==5) {
-			g.drawImage(arrow,  1180,  255,  25,  15,  null); 
-			//g.drawString(">", 1400, 570);
-		}
+	if (gamestate.getTick()==1) {
+		g.drawImage(arrow,  1180,  445,  25,  15,  null); 
+		//g.drawString(">", 1400, 615);
+	}
+	else if (gamestate.getTick()==2) {
+		g.drawImage(arrow,  1180,  416,  25,  15,  null); 
+	}
+	else if (gamestate.getTick()==3) {
+		g.drawImage(arrow,  1180,  387,  25,  15,  null); 
+		//g.drawString(">", 1400, 570);
+	}
+	else if (gamestate.getTick()==4) {
+		g.drawImage(arrow,  1180,  358,  25,  15,  null); 
+	}
+	else if (gamestate.getTick()==5) {
+		g.drawImage(arrow,  1180,  332,  25,  15,  null); 
+	}
+	else if (gamestate.getTick()==6) {
+		g.drawImage(arrow,  1180,  306,  25,  15,  null); 
+		//g.drawString(">", 1400, 480);
+	}
+	else if (gamestate.getTick()==7) {
+		g.drawImage(arrow,  1180,  280,  25,  15,  null); 
+	}
+	else if (gamestate.getTick()==8) {
+		g.drawImage(arrow,  1180,  255,  25,  15,  null);
+		//g.drawString(">", 1400, 570);
+	}
+	else if (gamestate.getTick()==9) {
+		g.drawImage(arrow,  1180,  229,  25,  15,  null); 
+	}
+	else {
+		g.drawImage(arrow,  1180,  200,  25,  15,  null); 
+	}
 	//}
 	
 	}
@@ -265,9 +296,11 @@ public void mouseClicked(MouseEvent e) {
 				if (x >= 60 && x <= 190 && y >= 314 && y <= 414) {
 					if(choice1 == tcb) {
 						choice1 = tcbs;
+						tcDraw = true;
 					}
 					else {
 						choice1 = tcb;
+						tcDraw = false;
 					}
 				}			
 				if (x >= 1000 && x <= 1130 && y >= 314 && y <= 414) {
@@ -296,6 +329,9 @@ public void mouseClicked(MouseEvent e) {
 					pl1coords[0] = x;
 					pl1coords[1] = y;
 					currentMoveType = "move"; 
+				}
+				if (tcDraw == true && x < 400 && x >= 245 && y >= 665) {
+					toPush = true;
 				}
 				}
 		repaint();
