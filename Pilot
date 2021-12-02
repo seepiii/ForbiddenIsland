@@ -7,4 +7,9 @@ public class Pilot extends Player{
 	}
 	public move() {}
 	
+	public void giveTreasureCard(Player p, TreasureCard tc) {
+		p.addTreasureCard(tc);
+		this.getCards().remove(tc);
+	}
+	
 }
