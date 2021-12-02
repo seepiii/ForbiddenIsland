@@ -1,0 +1,10 @@
+public class Pilot extends Player{
+	private int[] coordinates;
+	
+	public Pilot(int[] coords){
+		coordinates = coords;
+		
+	}
+	public move() {}
+	
+}
