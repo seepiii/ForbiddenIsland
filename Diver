@@ -10,6 +10,7 @@ public class Diver extends Player{
 	public void giveTreasureCard(Player p, TreasureCard tc) {
 		p.addTreasureCard(tc);
 		this.getCards().remove(tc);
+		//asdf
 	}
 	
 }
