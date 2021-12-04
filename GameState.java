@@ -115,6 +115,7 @@ public class GameState {
 
 
 
+
 	}
 	public boolean checkIfLost() {
 		return lose;
