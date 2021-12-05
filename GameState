@@ -105,7 +105,7 @@ public class GameState {
 		//makes card decks
 		treasureCards=new TreasureCardDeck(airTC, earthTC, fireTC, waterTC, sandbagTC, heliTC, watersRiseTC);
 		floodCards=new FloodCardDeck();
-		//randomizes tiles and stores them?
+		//randomizes tiles and stores them
 		listOfTiles.add(breakersBridge);
 		listOfTiles.add(bronzeGate);
 		listOfTiles.add(whisperingGarden);
@@ -131,7 +131,7 @@ public class GameState {
 		listOfTiles.add(foolsLanding);
 		listOfTiles.add(cliffsOfAbandon);
 		Collections.shuffle(listOfTiles);
-		int count=0;
+		int cnt=0;
 		for (int r=0; r<6; r++) {
 			for (int c=0; c<6; c++) {
 				if ((r==0&&c==0)||(r==0&&c==1)||(r==1&&c==0)||
@@ -142,11 +142,23 @@ public class GameState {
 					boardState[r][c]='X';
 				}
 				else {
-					tiles[r][c]=listOfTiles.get(count);
-					count++;
+					tiles[r][c]=listOfTiles.get(cnt);
+					cnt++;
 					boardState[r][c]='O';
 				}
 			}
+		}
+		int count=0;
+		while (count<6) {
+			FloodCard fc=floodCards.drawCard();
+			for (int r=0; r<6; r++) {
+				for (int c=0; c<6; c++) {
+					if (tiles[r][c]!=null&&tiles[r][c].getName().equals(fc.getPlaceName())) {
+						tiles[r][c].flood();
+					}
+				}
+			}
+			count++;
 		}
 	}
 	public boolean checkIfLost() {
@@ -183,9 +195,25 @@ public class GameState {
 	}
 	//should draw the number of cards and make the corresponding tile flooded or sunk and change the letter in board
 	public FloodCard drawFloodCards() {
-		FloodCard fc=floodCards.drawCard();
-		
-		return fc;
+		int count=0;
+		while (count<waterLevel) {
+			FloodCard fc=floodCards.drawCard();
+			for (int r=0; r<6; r++) {
+				for (int c=0; c<6; c++) {
+					if (tiles[r][c]!=null&&tiles[r][c].getName().equals(fc.getPlaceName())) {
+						if (tiles[r][c].isFlooded()) {
+							tiles[r][c]=null;
+							floodCards.sunk(fc);
+						}
+						else {
+							tiles[r][c].flood();
+						}
+					}
+				}
+			}
+			count++;
+		}
+		return floodCards.getTopDiscarded();
 	}
 	
 	//get methods
@@ -197,5 +225,8 @@ public class GameState {
 			return tileWater;
 		}
 		return tiles[r][c].getImage();
+	}
+	public int getWaterLevel() {
+		return waterLevel;
 	}
 }
