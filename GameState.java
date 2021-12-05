@@ -92,7 +92,7 @@ public class GameState {
 				Map.entry("Sunk", new BufferedImage[]{ImageIO.read(new File("/Images/Tiles/extra/Tile_Flood_Water@2x.png"))})
 		);
 
-		String[] allTiles = new String[]{"MistyMarsh", "Observatory", "IronGate", "TidalPalace", "CrimsonForest",
+		String[] randomizedTiles = new String[]{"MistyMarsh", "Observatory", "IronGate", "TidalPalace", "CrimsonForest",
 				"BreakersBridge", "CaveOfEmbers", "TwilightHollow", "DunesOfDeception",
 				"TempleOfTheMoon", "LostLagoon", "CaveOfShadows", "PhantomRock", "SilverGate",
 				"Watchtower", "CopperGate", "CliffsOfAbandon", "WhisperingGarden", "TempleOfTheSun",
