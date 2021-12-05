@@ -1,5 +1,6 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Stack;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 public class GameState {
 	private BufferedImage fireTC, earthTC, waterTC, airTC, watersRiseTC, sandbagTC, heliTC;
-//	private int seed;
+	//	private int seed;
 	private int waterLevel, tick;
 	//board
 	private char[][] boardState;
@@ -24,15 +25,15 @@ public class GameState {
 	private Player player3;
 	private Player player4;
 	public static Tile[] gameTiles;
-	public static Map<String, BufferedImage[]>() tiles;
+	public static HashMap<String, BufferedImage[]> tiles;
 	//decks
 	private FloodCardDeck floodCards;
 	private TreasureCardDeck treasureCards;
-	
+
 	private boolean lose=false;
 	private HashMap<String, Treasure> treasures;
-	
-	public GameState(String w) {
+
+	public GameState(String w) throws IOException {
 //		seed=s;
 		//setting water level
 		if (w.equals("Novice")) {
@@ -53,13 +54,13 @@ public class GameState {
 		}
 		//reading in images?
 		try {
-		airTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Wind Treasure Card.png"));
-		earthTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Earth Treasure Card.png"));
-		fireTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fire Treasure Card.png"));
-		waterTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Ocean Treasure Card.png"));
-		sandbagTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Sandbag TC.png"));
-		heliTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Helicopter Lift.png"));
-		watersRiseTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Waters Rise TC.png"));
+			airTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Wind Treasure Card.png"));
+			earthTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Earth Treasure Card.png"));
+			fireTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fire Treasure Card.png"));
+			waterTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Ocean Treasure Card.png"));
+			sandbagTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Sandbag TC.png"));
+			heliTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Helicopter Lift.png"));
+			watersRiseTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Waters Rise TC.png"));
 		}
 		catch(Exception E) {
 			System.out.println("GameState Exception Error");
@@ -69,7 +70,7 @@ public class GameState {
 		treasureCards=new TreasureCardDeck(airTC, earthTC, fireTC, waterTC, sandbagTC, heliTC, watersRiseTC);
 		floodCards=new FloodCardDeck();
 
-		tiles = Map.ofEntries(
+		tiles = (HashMap<String, BufferedImage[]>) Map.ofEntries(
 				Map.entry("BreakersBridge", 	new BufferedImage[]{ImageIO.read(new File("/Images/Tiles/Breakers Bridge@2x.png")), ImageIO.read(new File("/Images/Tiles/Breakers Bridge_flood@2x.png"))}),
 				Map.entry("BronzeGate", 	new BufferedImage[]{ImageIO.read(new File("/Images/Tiles/Bronze Gate@2x.png")), ImageIO.read(new File("/Images/Tiles/Bronze Gate_flood@2x.png"))}),
 				Map.entry("CaveOfEmbers", new BufferedImage[]{ImageIO.read(new File("/Images/Tiles/Cave of Embers@2x.png")), ImageIO.read(new File("/Images/Tiles/Cave of Embers_flood@2x.png"))}),
@@ -143,7 +144,7 @@ public class GameState {
 		else {
 			lose=true;
 		}
-		
+
 	}
 	public TreasureCard drawTreasureCard() {
 		TreasureCard tc=treasureCards.drawCard();
@@ -151,7 +152,7 @@ public class GameState {
 			makeWaterRise();
 		}
 		if (tc.isAction()) {
-			
+
 		}
 		return tc;
 	}
@@ -160,7 +161,7 @@ public class GameState {
 		FloodCard fc = floodCards.drawCard();
 		return fc;
 	}
-	
+
 	//get methods
 	public int getTick() {
 		return tick;
