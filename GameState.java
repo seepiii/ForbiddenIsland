@@ -19,7 +19,7 @@ public class GameState {
 	private Player player3;
 	private Player player4;
 	public static Tile[] gameTiles;
-	public static Map<String, BufferedImage[]> tiles;
+	//public static Map<String, BufferedImage[]> tiles;
 	//decks
 	private FloodCardDeck floodCards;
 	private TreasureCardDeck treasureCards;
