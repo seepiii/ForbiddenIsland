@@ -75,9 +75,9 @@ public class GameState {
 			//tiles
 			breakersBridge=new Tile("Breakers Bridge", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge_flood@2x.png")));
 			bronzeGate=new Tile("Bronze Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate_flood@2x.png")));
-			caveOfEmbers=new Tile("Cave Of Embers", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers_flood@2x.png")));
-			caveOfShadows=new Tile("Cave Of Shadows", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows_flood@2x.png")));
-			cliffsOfAbandon=new Tile("Cliffs Of Abandon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon_flood@2x.png")));
+			caveOfEmbers=new Tile("Cave of Embers", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers_flood@2x.png")));
+			caveOfShadows=new Tile("Cave of Shadows", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows_flood@2x.png")));
+			cliffsOfAbandon=new Tile("Cliffs of Abandon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon_flood@2x.png")));
 			copperGate=new Tile("Copper Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Copper Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Copper Gate_flood@2x.png")));
 			coralPalace=new Tile("Coral Palace", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Coral Palace@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Coral Palace_flood@2x.png")));
 			crimsonForest=new Tile("Crimson Forest", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Crimson Forest@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Crimson Forest_flood@2x.png")));
