@@ -1,0 +1,7 @@
+for (Tile tempTile : tiles)
+        {
+
+            g.setColor(Color.BLACK);
+            g.drawImage(tempTile.getImage(), tempTile.getXLoc(), tempTile.getYLoc(), (int) (180 * scale), (int) (180 * scale), null);
+            
+        }
