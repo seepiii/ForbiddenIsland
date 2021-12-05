@@ -12,8 +12,8 @@ public class GameState {
 //	private int seed;
 	private int waterLevel, tick;
 	//board
-	private char[][] boardState;
-	private ArrayList<Tile> listOfTiles;
+	private char[][] boardState=new char[6][6];
+	private ArrayList<Tile> listOfTiles=new ArrayList<>();
 	private Tile[][] tiles=new Tile[6][6];
 	//players
 	private ArrayList<Player> allPlayerTypes=new ArrayList<>();
@@ -28,16 +28,29 @@ public class GameState {
 	private boolean lose=false;
 	private HashMap<String, Treasure> treasures;
 	
+	private Tile caveOfEmbers, caveOfShadows, 
+	cliffsOfAbandon, copperGate, coralPalace, crimsonForest, 
+	dunesOfDeception, foolsLanding, goldGate, howlingGarden, 
+	ironGate, lostLagoon, mistyMarsh, observatory, 
+	phantomRock, silverGate, tidalPalace, templeOfTheMoon, 
+	templeOfTheSun, twilightHollow, watchtower, whisperingGarden;
+	
 	public GameState(String w) {
 		BufferedImage fireTC, earthTC, waterTC, airTC, watersRiseTC, sandbagTC, heliTC;
-		Tile bronzeGateTile, caveOfEmbers, caveOfShadows, 
-		cliffsOfAbandon, copperGate, coralPalace, crimsonForest, 
-		dunesOfDeception, foolsLanding, goldGate, howlingGarden, 
-		ironGate, lostLagoon, mistyMarsh, observatory, 
-		phantomRock, silverGate, tidalPalace, templeOfTheMoon, 
-		templeOfTheSun, twilightHollow, watchtower, whisperingGarden;
 		
 		BufferedImage breakersBridge, breakersBridgeFlood, bronzeGate, bronzeGateFlood;
+		
+//		BufferedImage caveOfEmbers, caveOfEmbersFlood, caveOfShadows, caveOfShadowsFlood, 
+//		cliffsOfAbandon, cliffsOfAbandonFlood, copperGate, copperGateFlood, 
+//		coralPalace, coralPalaceFlood, crimsonForest, crimsonForestFlood, 
+//		dunesOfDeception, dunesOfDeceptionFlood, goldGate, goldGateFlood, 
+//		howlingGarden, howlingGardenFlood, ironGate, ironGateFlood,
+//		lostLagoon, lostLagoonFlood, mistyMarsh, mistyMarshFlood, 
+//		observatory, observatoryFlood, phantomRock, phantomRockFlood, 
+//		silverGate, silverGateFlood, tidalPalace, tidalPalaceFlood, 
+//		templeOfTheMoon, templeOfTheMoonFlood, templeOfTheSunFlood, templeOfTheSun, 
+//		twilightHollow, twilightHollowFlood, watchtower, watchtowerFlood, 
+//		whisperingGarden, whisperingGardenFlood, foolsLanding, foolsLandingFlood;
 //		seed=s;
 		//setting water level
 		if (w.equals("Novice")) {
@@ -75,33 +88,34 @@ public class GameState {
 		}
 		try {
 //			//tiles
-//			breakersBridge=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Images/Breakers Bridge@2x.png"));
-//			breakersBridgeFlood=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge_flood@2x.png"));
-			
+			breakersBridge=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge@2x.png"));
+			breakersBridgeFlood=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge_flood@2x.png"));
 			bronzeGate=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate@2x.png"));
 			bronzeGateFlood= ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate_flood@2x.png"));
-//			caveOfEmbers=new Tile("Cave Of Embers", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers_flood@2x.png")));
-//			caveOfShadows=new Tile("Cave Of Shadows", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows_flood@2x.png")));
-//			cliffsOfAbandon=new Tile("Cliffs Of Abandon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon_flood@2x.png")));
-//			copperGate=new Tile("Copper Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Copper Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Copper Gate_flood@2x.png")));
-//			coralPalace=new Tile("Coral Palace", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Coral Palace@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Coral Palace_flood@2x.png")));
-//			crimsonForest=new Tile("Crimson Forest", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Crimson Forest@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Crimson Forest_flood@2x.png")));
-//			dunesOfDeception=new Tile("Dunes Of Deception", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Dunes of Deception@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Dunes of Deception_flood@2x.png")));
-//			foolsLanding=new Tile("Fools Landing", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fools' Landing@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fools' Landing_flood@2x.png")));
-//			goldGate=new Tile("Gold Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Gold Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Gold Gate_flood@2x.png")));
-//			howlingGarden=new Tile("Howling Garden", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Howling Garden@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Howling Garden_flood@2x.png")));
-//			ironGate=new Tile("Iron Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Iron Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Iron Gate_flood@2x.png")));
-//			lostLagoon=new Tile("Lost Lagoon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Lost Lagoon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Lost Lagoon_flood@2x.png")));
-//			mistyMarsh=new Tile("Misty Marsh", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Misty Marsh@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Misty Marsh_flood@2x.png")));
-//			observatory=new Tile("Observatory", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Observatory@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Observatory_flood@2x.png")));
-//			phantomRock=new Tile("Phantom Rock", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Phantom Rock@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Phantom Rock_flood@2x.png")));
-//			silverGate=new Tile("Silver Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Silver Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Silver Gate_flood@2x.png")));
-//			tidalPalace=new Tile("Tidal Palace", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Moon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Moon_flood@2x.png")));
-//			templeOfTheMoon=new Tile("Temple of the Moon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun_flood@2x.png")));
-//			templeOfTheSun=new Tile("Temple of the Sun", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Tidal Palace@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Tidal Palace_flood@2x.png")));
-//			twilightHollow=new Tile("Twilight Hollow", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Twilight Hollow@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Twilight Hollow_flood@2x.png")));
-//			watchtower=new Tile("Watchtower", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Watchtower@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Watchtower_flood@2x.png")));
-//			whisperingGarden=new Tile("Whispering Garden", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Whispering Garden@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Whispering Garden_flood@2x.png")));
+//			caveOfEmbers=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png"));
+//			caveOfEmbersFlood= ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers_flood@2x.png"));
+			caveOfEmbers=new Tile("Cave Of Embers", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers_flood@2x.png")));
+			caveOfShadows=new Tile("Cave Of Shadows", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows_flood@2x.png")));
+			cliffsOfAbandon=new Tile("Cliffs Of Abandon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon_flood@2x.png")));
+			copperGate=new Tile("Copper Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Copper Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Copper Gate_flood@2x.png")));
+			coralPalace=new Tile("Coral Palace", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Coral Palace@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Coral Palace_flood@2x.png")));
+			crimsonForest=new Tile("Crimson Forest", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Crimson Forest@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Crimson Forest_flood@2x.png")));
+			dunesOfDeception=new Tile("Dunes Of Deception", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Dunes of Deception@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Dunes of Deception_flood@2x.png")));
+			foolsLanding=new Tile("Fools Landing", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fools' Landing@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fools' Landing_flood@2x.png")));
+			goldGate=new Tile("Gold Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Gold Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Gold Gate_flood@2x.png")));
+			howlingGarden=new Tile("Howling Garden", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Howling Garden@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Howling Garden_flood@2x.png")));
+			ironGate=new Tile("Iron Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Iron Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Iron Gate_flood@2x.png")));
+			lostLagoon=new Tile("Lost Lagoon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Lost Lagoon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Lost Lagoon_flood@2x.png")));
+			mistyMarsh=new Tile("Misty Marsh", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Misty Marsh@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Misty Marsh_flood@2x.png")));
+			observatory=new Tile("Observatory", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Observatory@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Observatory_flood@2x.png")));
+			phantomRock=new Tile("Phantom Rock", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Phantom Rock@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Phantom Rock_flood@2x.png")));
+			silverGate=new Tile("Silver Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Silver Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Silver Gate_flood@2x.png")));
+			tidalPalace=new Tile("Tidal Palace", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Moon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Moon_flood@2x.png")));
+			templeOfTheMoon=new Tile("Temple of the Moon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun_flood@2x.png")));
+			templeOfTheSun=new Tile("Temple of the Sun", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Tidal Palace@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Tidal Palace_flood@2x.png")));
+			twilightHollow=new Tile("Twilight Hollow", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Twilight Hollow@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Twilight Hollow_flood@2x.png")));
+			watchtower=new Tile("Watchtower", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Watchtower@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Watchtower_flood@2x.png")));
+			whisperingGarden=new Tile("Whispering Garden", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Whispering Garden@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Whispering Garden_flood@2x.png")));
 		}
 		catch(Exception e) {
 			System.out.println("Tile Error");
@@ -111,43 +125,44 @@ public class GameState {
 		treasureCards=new TreasureCardDeck(airTC, earthTC, fireTC, waterTC, sandbagTC, heliTC, watersRiseTC);
 		floodCards=new FloodCardDeck();
 		//randomizes tiles and stores them?
-		bronzeGateTile=new Tile("Bronze Gate", bronzeGate, bronzeGateFlood);
-//		listOfTiles.add(whisperingGarden);
-//		listOfTiles.add(watchtower);
-//		listOfTiles.add(templeOfTheSun);
-//		listOfTiles.add(templeOfTheMoon);
-//		listOfTiles.add(tidalPalace);
-//		listOfTiles.add(silverGate);
-//		listOfTiles.add(observatory);
-//		listOfTiles.add(ironGate);
-//		listOfTiles.add(howlingGarden);
-//		listOfTiles.add(goldGate);
-//		listOfTiles.add(dunesOfDeception);
-//		listOfTiles.add(crimsonForest);
-//		listOfTiles.add(coralPalace);
-//		listOfTiles.add(copperGate);
-//		listOfTiles.add(caveOfShadows);
-//		listOfTiles.add(caveOfEmbers);
+		Tile breakersBridgeTile=new Tile("Breakers Bridge", breakersBridge, breakersBridgeFlood);
+		listOfTiles.add(breakersBridgeTile);
+		Tile bronzeGateTile=new Tile("Bronze Gate", bronzeGate, bronzeGateFlood);
 		listOfTiles.add(bronzeGateTile);
-//		listOfTiles.add(new Tile("Breakers Bridge", breakersBridge, breakersBridgeFlood));
-//		listOfTiles.add(twilightHollow);
-//		listOfTiles.add(phantomRock);
-//		listOfTiles.add(mistyMarsh);
-//		listOfTiles.add(lostLagoon);
-//		listOfTiles.add(foolsLanding);
-//		listOfTiles.add(cliffsOfAbandon);
-//		Collections.shuffle(listOfTiles);
+		listOfTiles.add(whisperingGarden);
+		listOfTiles.add(watchtower);
+		listOfTiles.add(templeOfTheSun);
+		listOfTiles.add(templeOfTheMoon);
+		listOfTiles.add(tidalPalace);
+		listOfTiles.add(silverGate);
+		listOfTiles.add(observatory);
+		listOfTiles.add(ironGate);
+		listOfTiles.add(howlingGarden);
+		listOfTiles.add(goldGate);
+		listOfTiles.add(dunesOfDeception);
+		listOfTiles.add(crimsonForest);
+		listOfTiles.add(coralPalace);
+		listOfTiles.add(copperGate);
+		listOfTiles.add(caveOfShadows);
+		listOfTiles.add(caveOfEmbers);
+		listOfTiles.add(twilightHollow);
+		listOfTiles.add(phantomRock);
+		listOfTiles.add(mistyMarsh);
+		listOfTiles.add(lostLagoon);
+		listOfTiles.add(foolsLanding);
+		listOfTiles.add(cliffsOfAbandon);
+		Collections.shuffle(listOfTiles);
 		int count=0;
 		for (int r=0; r<6; r++) {
 			for (int c=0; c<6; c++) {
 				if ((r==0&&c==0)||(r==0&&c==1)||(r==1&&c==0)||
-					(r==0&&c==5)||(r==0&&c==4)||(r==1&&c==5)||
-					(r==5&&c==0)||(r==4&&c==1)||(r==5&&c==1)||
+					(r==0&&c==4)||(r==0&&c==5)||(r==1&&c==5)||
+					(r==5&&c==0)||(r==4&&c==0)||(r==5&&c==1)||
 					(r==5&&c==5)||(r==5&&c==4)||(r==4&&c==5)) {
 					tiles[r][c]=null;
 					boardState[r][c]='X';
 				}
-				else if (count<listOfTiles.size()){
+				else {
 					tiles[r][c]=listOfTiles.get(count);
 					count++;
 					boardState[r][c]='O';
