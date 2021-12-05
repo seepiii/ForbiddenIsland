@@ -28,7 +28,7 @@ public class GameState {
 	private boolean lose=false;
 	private HashMap<String, Treasure> treasures;
 	
-	private Tile caveOfEmbers, caveOfShadows, 
+	private Tile breakersBridge, bronzeGate, caveOfEmbers, caveOfShadows, 
 	cliffsOfAbandon, copperGate, coralPalace, crimsonForest, 
 	dunesOfDeception, foolsLanding, goldGate, howlingGarden, 
 	ironGate, lostLagoon, mistyMarsh, observatory, 
@@ -37,21 +37,6 @@ public class GameState {
 	
 	public GameState(String w) {
 		BufferedImage fireTC, earthTC, waterTC, airTC, watersRiseTC, sandbagTC, heliTC;
-		
-		BufferedImage breakersBridge, breakersBridgeFlood, bronzeGate, bronzeGateFlood;
-		
-//		BufferedImage caveOfEmbers, caveOfEmbersFlood, caveOfShadows, caveOfShadowsFlood, 
-//		cliffsOfAbandon, cliffsOfAbandonFlood, copperGate, copperGateFlood, 
-//		coralPalace, coralPalaceFlood, crimsonForest, crimsonForestFlood, 
-//		dunesOfDeception, dunesOfDeceptionFlood, goldGate, goldGateFlood, 
-//		howlingGarden, howlingGardenFlood, ironGate, ironGateFlood,
-//		lostLagoon, lostLagoonFlood, mistyMarsh, mistyMarshFlood, 
-//		observatory, observatoryFlood, phantomRock, phantomRockFlood, 
-//		silverGate, silverGateFlood, tidalPalace, tidalPalaceFlood, 
-//		templeOfTheMoon, templeOfTheMoonFlood, templeOfTheSunFlood, templeOfTheSun, 
-//		twilightHollow, twilightHollowFlood, watchtower, watchtowerFlood, 
-//		whisperingGarden, whisperingGardenFlood, foolsLanding, foolsLandingFlood;
-//		seed=s;
 		//setting water level
 		if (w.equals("Novice")) {
 			tick=1;
@@ -87,13 +72,9 @@ public class GameState {
 			return;
 		}
 		try {
-//			//tiles
-			breakersBridge=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge@2x.png"));
-			breakersBridgeFlood=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge_flood@2x.png"));
-			bronzeGate=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate@2x.png"));
-			bronzeGateFlood= ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate_flood@2x.png"));
-//			caveOfEmbers=ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png"));
-//			caveOfEmbersFlood= ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers_flood@2x.png"));
+			//tiles
+			breakersBridge=new Tile("Breakers Bridge", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge_flood@2x.png")));
+			bronzeGate=new Tile("Bronze Gate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate_flood@2x.png")));
 			caveOfEmbers=new Tile("Cave Of Embers", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers_flood@2x.png")));
 			caveOfShadows=new Tile("Cave Of Shadows", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Shadows_flood@2x.png")));
 			cliffsOfAbandon=new Tile("Cliffs Of Abandon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon@2x.png")), ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon_flood@2x.png")));
@@ -125,10 +106,8 @@ public class GameState {
 		treasureCards=new TreasureCardDeck(airTC, earthTC, fireTC, waterTC, sandbagTC, heliTC, watersRiseTC);
 		floodCards=new FloodCardDeck();
 		//randomizes tiles and stores them?
-		Tile breakersBridgeTile=new Tile("Breakers Bridge", breakersBridge, breakersBridgeFlood);
-		listOfTiles.add(breakersBridgeTile);
-		Tile bronzeGateTile=new Tile("Bronze Gate", bronzeGate, bronzeGateFlood);
-		listOfTiles.add(bronzeGateTile);
+		listOfTiles.add(breakersBridge);
+		listOfTiles.add(bronzeGate);
 		listOfTiles.add(whisperingGarden);
 		listOfTiles.add(watchtower);
 		listOfTiles.add(templeOfTheSun);
