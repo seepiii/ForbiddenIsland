@@ -243,9 +243,15 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		//g.drawImage(diver,  590,  20,  60,  87,  null);
 		//LINE FUCKING 245 WAIT THAT SIT 
 		//g.drawImage(p1,  pl1coords[0],  pl1coords[1],  49,  71, null);
-
+		
+		for (int r=0; r<6; r++) {
+			for (int c=0; c<6; c++) {
+				g.drawImage(gamestate.getTileImage(r, c), r*90+r*30+260, c*95+c*30+13, 90, 95, null);
+			}
+		}
+		
 		g.drawImage(blueB,  245,  670,  125,  50,  null); //-200 from width
-
+		
 
 		System.out.println("Paint");
 		g.setFont(new Font("TimesRoman",Font.PLAIN,12));
