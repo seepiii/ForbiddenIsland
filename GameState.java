@@ -2,7 +2,11 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.util.Stack;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 public class GameState {
@@ -11,7 +15,7 @@ public class GameState {
 	private int waterLevel, tick;
 	//board
 	private char[][] boardState;
-	private ArrayList<Tile> tiles;
+	//private ArrayList<Tile> tiles;
 	//players
 	private ArrayList<Player> allPlayerTypes=new ArrayList<>();
 	private Player player1;
@@ -19,7 +23,7 @@ public class GameState {
 	private Player player3;
 	private Player player4;
 	public static Tile[] gameTiles;
-	//public static Map<String, BufferedImage[]> tiles;
+	public static Map<String, BufferedImage[]> tiles;
 	//decks
 	private FloodCardDeck floodCards;
 	private TreasureCardDeck treasureCards;
@@ -101,7 +105,7 @@ public class GameState {
 		//shuffle
 		List<String> tileShuffler = Arrays.asList(randomizedTiles);
 		Collections.shuffle(tileShuffler);
-		randomizedTiles = tileShuffler.toArray(new String[tileShuffle.size()]);
+		randomizedTiles = tileShuffler.toArray(new String[tileShuffler.size()]);
 
 		int[][] pos = new int[][]{
 				{0, 2}, {0, 3}, {1, 1}, {1, 2}, {1, 3}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {3, 0}, {3, 1}, {3, 2}, {3, 3}, {3, 4}, {3, 5}, {4, 1}, {4, 2}, {4, 3}, {4, 4}, {5, 2}, {5, 3}
