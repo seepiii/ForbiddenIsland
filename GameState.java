@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Random;
 import java.util.Stack;
 import java.util.ArrayList;
