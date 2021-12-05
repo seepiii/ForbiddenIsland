@@ -104,7 +104,7 @@ public class GameState {
 				"Watchtower", "CopperGate", "CliffsOfAbandon", "WhisperingGarden", "TempleOfTheSun",
 				"CoralPalace", "GoldGate", "FoolsLanding", "HowlingGarden", "BronzeGate"};
 
-		//shuffle
+		
 		List<String> tileShuffler = Arrays.asList(randomizedTiles);
 		Collections.shuffle(tileShuffler);
 		randomizedTiles = tileShuffler.toArray(new String[tileShuffler.size()]);
