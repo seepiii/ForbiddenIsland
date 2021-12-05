@@ -79,6 +79,32 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			watersRiseTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("Image/Waters Rise TC.png"));
 			sandbagTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("Image/Sandbag TC.png"));
 			heliTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("Image/Helicopter Lift.png"));
+			HashMap<String, BufferedImage> tiles2 = new HashMap<String, BufferedImage>();
+			tiles2.put("BreakersBridge", 	ImageIO.read(new File("/Image/Breakers Bridge@2x.png")));
+			tiles2.put("BronzeGate", ImageIO.read(new File("/Image/Bronze Gate@2x.png")) );
+			tiles2.put("CaveOfEmbers", ImageIO.read(new File("/Image/Cave of Embers@2x.png")));
+			tiles2.put("CaveOfShadows", ImageIO.read(new File("/Image/Cave of Embers@2x.png")));
+			tiles2.put("CliffsOfAbandon", ImageIO.read(new File("/Image/Cliffs of Abandon@2x.png")));
+			tiles2.put("CopperGate", ImageIO.read(new File("/Image/Copper Gate@2x.png")));
+			tiles2.put("CoralPalace", ImageIO.read(new File("/Image/Coral Palace@2x.png")));
+			tiles2.put("CrimsonForest", ImageIO.read(new File("/Image/Crimson Forest@2x.png")));
+			tiles2.put("DunesOfDeception",ImageIO.read(new File("/Image/Dunes of Deception@2x.png")) );
+			tiles2.put("FoolsLanding", ImageIO.read(new File("/Image/Fools_ Landing@2x.png")));
+			tiles2.put("GoldGate",ImageIO.read(new File("/Image/Gold Gate@2x.png")));
+			tiles2.put("HowlingGarden",ImageIO.read(new File("/Image/Howling Garden@2x.png")));
+			tiles2.put("IronGate", ImageIO.read(new File("/Image/Iron Gate@2x.png")));
+			tiles2.put("LostLagoon", ImageIO.read(new File("/Image/Lost Lagoon@2x.png")));
+			tiles2.put("MistyMarsh", ImageIO.read(new File("/Image/Misty Marsh@2x.png")));
+			tiles2.put("Observatory", ImageIO.read(new File("/Image/Observatory@2x.png")));
+			tiles2.put("PhantomRock", ImageIO.read(new File("/Image/Phantom Rock@2x.png")));
+			tiles2.put("SilverGate",ImageIO.read(new File("/Image/Silver Gate@2x.png")));
+			tiles2.put("TempleOfTheMoon", ImageIO.read(new File("/Image/Temple of the Moon@2x.png")));
+			tiles2.put("TempleOfTheSun", ImageIO.read(new File("/Image/Temple of the Sun@2x.png")));
+			tiles2.put("TidalPalace", ImageIO.read(new File("/Image/Tidal Palace@2x.png")));
+			tiles2.put("TwilightHollow",ImageIO.read(new File("/Image/Twilight Hollow@2x.png")) );
+			tiles2.put("Watchtower",ImageIO.read(new File("/Image/Watchtower@2x.png")) );
+			tiles2.put("WhisperingGarden", ImageIO.read(new File("/Image/Whispering Garden@2x.png")));
+			tiles2.put("Sunk",ImageIO.read(new File("/Image/Tile_Flood_Water@2x.png")));
 		}
 		catch(Exception E) {
 			System.out.println("Exception Error");
@@ -215,7 +241,8 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		g.drawImage(earthTreasure,  800,  470,  90,  100,  null);
 		g.drawImage(engTile,  1300,  680,  90,  90,  null);
 		//g.drawImage(diver,  590,  20,  60,  87,  null);
-		g.drawImage(p1,  pl1coords[0],  pl1coords[1],  49,  71,  null);
+		//LINE FUCKING 245 WAIT THAT SIT 
+		//g.drawImage(p1,  pl1coords[0],  pl1coords[1],  49,  71, null);
 
 		g.drawImage(blueB,  245,  670,  125,  50,  null); //-200 from width
 

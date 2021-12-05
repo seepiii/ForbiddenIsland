@@ -1,6 +1,4 @@
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 
 public class Tile {
@@ -10,7 +8,6 @@ public class Tile {
 	private BufferedImage flooded;
 	private BufferedImage state;
 	private int[] coordinates;
-	
 	
 	public Tile (String n, BufferedImage reg, BufferedImage flood, int[] c) {
 		isFlooded=false;
@@ -45,9 +42,5 @@ public class Tile {
 	}
 	public BufferedImage getImage() {
 		return state;
-	}
-	public ArrayList<BufferedImage> shuffle() {
-		return null;
-		
 	}
 }

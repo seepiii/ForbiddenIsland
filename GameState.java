@@ -31,7 +31,7 @@ public class GameState {
 	private TreasureCardDeck treasureCards;
 
 	private boolean lose=false;
-	private HashMap<String, Treasure> treasures;
+	//private HashMap<String, Treasure> treasures;
 
 	public GameState(String w) throws IOException {
 //		seed=s;
@@ -97,56 +97,50 @@ public class GameState {
 				Map.entry("WhisperingGarden", new BufferedImage[]{ImageIO.read(new File("/Images/Tiles/Whispering Garden@2x.png")), ImageIO.read(new File("/Images/Tiles/Whispering Garden_flood@2x.png"))}),
 				Map.entry("Sunk", new BufferedImage[]{ImageIO.read(new File("/Images/Tiles/extra/Tile_Flood_Water@2x.png"))})
 		);
-
 		String[] randomizedTiles = new String[]{"MistyMarsh", "Observatory", "IronGate", "TidalPalace", "CrimsonForest",
 				"BreakersBridge", "CaveOfEmbers", "TwilightHollow", "DunesOfDeception",
 				"TempleOfTheMoon", "LostLagoon", "CaveOfShadows", "PhantomRock", "SilverGate",
 				"Watchtower", "CopperGate", "CliffsOfAbandon", "WhisperingGarden", "TempleOfTheSun",
 				"CoralPalace", "GoldGate", "FoolsLanding", "HowlingGarden", "BronzeGate"};
-
 		
 		List<String> tileShuffler = Arrays.asList(randomizedTiles);
 		Collections.shuffle(tileShuffler);
 		randomizedTiles = tileShuffler.toArray(new String[tileShuffler.size()]);
-
 		int[][] pos = new int[][]{
 				{0, 2}, {0, 3}, {1, 1}, {1, 2}, {1, 3}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {3, 0}, {3, 1}, {3, 2}, {3, 3}, {3, 4}, {3, 5}, {4, 1}, {4, 2}, {4, 3}, {4, 4}, {5, 2}, {5, 3}
 		};
-
 		gameTiles = new Tile[24];
-
 		for(int i = 0; i < 24; i++){
 			BufferedImage[] br = tiles.get(randomizedTiles[i]);
 			gameTiles[i] = new Tile(randomizedTiles[i], br[0], br[1], pos[i]);
 		}
-
 */
-		HashMap<String, BufferedImage> tiles2 = new HashMap<String, BufferedImage>();
-tiles2.put("BreakersBridge", 	ImageIO.read(new File("/Images/Tiles/Breakers Bridge@2x.png")));
-tiles2.put("BronzeGate", ImageIO.read(new File("/Images/Tiles/Bronze Gate_flood@2x.png")) );
-tiles2.put("CaveOfEmbers", ImageIO.read(new File("/Images/Tiles/Cave of Embers_flood@2x.png")));
-tiles2.put("CaveOfShadows", ImageIO.read(new File("/Images/Tiles/Cave of Embers_flood@2x.png")));
-tiles2.put("CliffsOfAbandon", ImageIO.read(new File("/Images/Tiles/Cliffs of Abandon_flood@2x.png")));
-tiles2.put("CopperGate", ImageIO.read(new File("/Images/Tiles/Copper Gate_flood@2x.png")));
-tiles2.put("CoralPalace", ImageIO.read(new File("/Images/Tiles/Coral Palace_flood@2x.png")));
-tiles2.put("CrimsonForest", ImageIO.read(new File("/Images/Tiles/Crimson Forest_flood@2x.png")));
-tiles2.put("DunesOfDeception",ImageIO.read(new File("/Images/Tiles/Dunes of Deception_flood@2x.png")) );
-tiles2.put("FoolsLanding", ImageIO.read(new File("/Images/Tiles/Fools_ Landing_flood@2x.png")));
-tiles2.put("GoldGate",ImageIO.read(new File("/Images/Tiles/Gold Gate_flood@2x.png")));
-tiles2.put("HowlingGarden",ImageIO.read(new File("/Images/Tiles/Howling Garden_flood@2x.png")));
-tiles2.put("IronGate", ImageIO.read(new File("/Images/Tiles/Iron Gate_flood@2x.png")));
-tiles2.put("LostLagoon", ImageIO.read(new File("/Images/Tiles/Lost Lagoon_flood@2x.png")));
-tiles2.put("MistyMarsh", ImageIO.read(new File("/Images/Tiles/Misty Marsh_flood@2x.png")));
-tiles2.put("Observatory", ImageIO.read(new File("/Images/Tiles/Observatory_flood@2x.png")));
-tiles2.put("PhantomRock", ImageIO.read(new File("/Images/Tiles/Phantom Rock_flood@2x.png")));
-tiles2.put("SilverGate",ImageIO.read(new File("/Images/Tiles/Silver Gate_flood@2x.png")));
-tiles2.put("TempleOfTheMoon", ImageIO.read(new File("/Images/Tiles/Temple of the Moon_flood@2x.png")));
-tiles2.put("TempleOfTheSun", ImageIO.read(new File("/Images/Tiles/Temple of the Sun_flood@2x.png")));
-tiles2.put("TidalPalace", ImageIO.read(new File("/Images/Tiles/Tidal Palace_flood@2x.png")));
-tiles2.put("TwilightHollow",ImageIO.read(new File("/Images/Tiles/Twilight Hollow_flood@2x.png")) );
-tiles2.put("Watchtower",ImageIO.read(new File("/Images/Tiles/Watchtower_flood@2x.png")) );
-tiles2.put("WhisperingGarden", ImageIO.read(new File("/Images/Tiles/Whispering Garden_flood@2x.png")));
-tiles2.put("Sunk",ImageIO.read(new File("/Images/Tiles/extra/Tile_Flood_Water@2x.png")));
+//		HashMap<String, BufferedImage> tiles2 = new HashMap<String, BufferedImage>();
+//tiles2.put("BreakersBridge", 	ImageIO.read(new File("/Image/Breakers Bridge@2x.png")));
+//tiles2.put("BronzeGate", ImageIO.read(new File("/Image/Bronze Gate@2x.png")) );
+//tiles2.put("CaveOfEmbers", ImageIO.read(new File("/Image/Cave of Embers@2x.png")));
+//tiles2.put("CaveOfShadows", ImageIO.read(new File("/Image/Cave of Embers@2x.png")));
+//tiles2.put("CliffsOfAbandon", ImageIO.read(new File("/Image/Cliffs of Abandon@2x.png")));
+//tiles2.put("CopperGate", ImageIO.read(new File("/Image/Copper Gate@2x.png")));
+//tiles2.put("CoralPalace", ImageIO.read(new File("/Image/Coral Palace@2x.png")));
+//tiles2.put("CrimsonForest", ImageIO.read(new File("/Image/Crimson Forest@2x.png")));
+//tiles2.put("DunesOfDeception",ImageIO.read(new File("/Image/Dunes of Deception@2x.png")) );
+//tiles2.put("FoolsLanding", ImageIO.read(new File("/Image/Fools_ Landing@2x.png")));
+//tiles2.put("GoldGate",ImageIO.read(new File("/Image/Gold Gate@2x.png")));
+//tiles2.put("HowlingGarden",ImageIO.read(new File("/Image/Howling Garden@2x.png")));
+//tiles2.put("IronGate", ImageIO.read(new File("/Image/Iron Gate@2x.png")));
+//tiles2.put("LostLagoon", ImageIO.read(new File("/Image/Lost Lagoon@2x.png")));
+//tiles2.put("MistyMarsh", ImageIO.read(new File("/Image/Misty Marsh@2x.png")));
+//tiles2.put("Observatory", ImageIO.read(new File("/Image/Observatory@2x.png")));
+//tiles2.put("PhantomRock", ImageIO.read(new File("/Image/Phantom Rock@2x.png")));
+//tiles2.put("SilverGate",ImageIO.read(new File("/Image/Silver Gate@2x.png")));
+//tiles2.put("TempleOfTheMoon", ImageIO.read(new File("/Image/Temple of the Moon@2x.png")));
+//tiles2.put("TempleOfTheSun", ImageIO.read(new File("/Image/Temple of the Sun@2x.png")));
+//tiles2.put("TidalPalace", ImageIO.read(new File("/Image/Tidal Palace@2x.png")));
+//tiles2.put("TwilightHollow",ImageIO.read(new File("/Image/Twilight Hollow@2x.png")) );
+//tiles2.put("Watchtower",ImageIO.read(new File("/Image/Watchtower@2x.png")) );
+//tiles2.put("WhisperingGarden", ImageIO.read(new File("/Image/Whispering Garden@2x.png")));
+//tiles2.put("Sunk",ImageIO.read(new File("/Image/Tile_Flood_Water@2x.png")));
 
 
 String[] randomizedTiles = new String[] {"MistyMarsh", "Observatory", "IronGate", "TidalPalace", "CrimsonForest",
@@ -157,10 +151,10 @@ String[] randomizedTiles = new String[] {"MistyMarsh", "Observatory", "IronGate"
         
 gameTiles = new Tile[24];
 
-		for(int i = 0; i < 24; i++){
-			BufferedImage[] br = tiles.get(randomizedTiles[i]);
-			gameTiles[i] = new Tile(randomizedTiles[i], br[0], br[1], pos[i]);
-		}
+//		for(int i = 0; i < 24; i++){
+//			BufferedImage[] br = tiles.get(randomizedTiles[i]);
+//			gameTiles[i] = new Tile(randomizedTiles[i], br[0], br[1], pos[i]);
+//		}
 
 
 	}
