@@ -13,10 +13,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 import java.awt.event.MouseListener;
+import java.util.*;
 public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private BufferedImage fcb, fcbs;
 	private BufferedImage tcb, tcbs;
-	private BufferedImage foolsLanding, templeOfTheSun;
+	private BufferedImage foolsLanding, templeOfTheSun, sunk;
 	private BufferedImage waterLevelMeter, blueB;
 	private BufferedImage blueTreasure, fireTreasure, airTreasure, earthTreasure;
 	private BufferedImage arrow;
@@ -38,7 +39,9 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	private Map<String, Boolean> actions;
 	private int x, y;
   //add other variables as needed
-	private boolean moveTurn;
+	private boolean moveTurn1, moveTurn2, moveTurn3, moveTurn4;
+	private boolean endTurn1, endTurn2, endTurn3, endTurn4;
+
 	private boolean tcDraw, fcDraw;
 	private String currentMoveType;
 	
@@ -59,6 +62,19 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 	public ForbiddenIslandPanel(String w) {
 //		seed=s;
 		gamestate=new GameState(w);
+		pl1coords = new int[2];
+		pl1coords[0] = 501;
+		pl1coords[1] = 20;
+		tp1coords = new int[2];
+		tp1coords[0] = 501;
+		tp1coords[1] = 20;
+		
+		pl2coords = new int[2];
+		pl2coords[0] = 501;
+		pl2coords[1] = 55;
+		tp2coords = new int[2];
+		tp2coords[0] = 501;
+		tp2coords[1] = 55;
 		//treasureCards = gs.fillUp();
 		//add everything else that happens in the constructor (written by sampadaa?)
 		try {
@@ -88,7 +104,33 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			watersRiseTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Waters Rise TC.png"));
 			sandbagTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Sandbag TC.png"));
 			heliTC = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Helicopter Lift.png"));
-		
+			sunk = ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Tile_Flood_Water@2x.png"));
+			HashMap<String, BufferedImage> tiles2 = new HashMap<String, BufferedImage>();
+			tiles2.put("BreakersBridge", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Breakers Bridge@2x.png")));
+			tiles2.put("BronzeGate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Bronze Gate@2x.png")) );
+			tiles2.put("CaveOfEmbers", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png")));
+			tiles2.put("CaveOfShadows", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cave of Embers@2x.png")));
+			tiles2.put("CliffsOfAbandon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Cliffs of Abandon@2x.png")));
+			tiles2.put("CopperGate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Copper Gate@2x.png")));
+			tiles2.put("CoralPalace", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Coral Palace@2x.png")));
+			tiles2.put("CrimsonForest", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Crimson Forest@2x.png")));
+			tiles2.put("DunesOfDeception",ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Dunes of Deception@2x.png")) );
+			tiles2.put("FoolsLanding", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Fools' Landing@2x.png")));
+			tiles2.put("GoldGate",ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Gold Gate@2x.png")));
+			tiles2.put("HowlingGarden",ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Howling Garden@2x.png")));
+			tiles2.put("IronGate", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Iron Gate@2x.png")));
+			tiles2.put("LostLagoon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Lost Lagoon@2x.png")));
+			tiles2.put("MistyMarsh", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Misty Marsh.png")));
+			tiles2.put("Observatory", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Observatory.png")));
+			tiles2.put("PhantomRock", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Phantom Rock@2x.png")));
+			tiles2.put("SilverGate",ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Silver Gate@2x.png")));
+			tiles2.put("TempleOfTheMoon", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Moon@2x.png")));
+			tiles2.put("TempleOfTheSun", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Temple of the Sun@2x.png")));
+			tiles2.put("TidalPalace", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Tidal Palace@2x.png")));
+			tiles2.put("TwilightHollow",ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Twilight Hollow@2x.png")) );
+			tiles2.put("Watchtower",ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Watchtower@2x.png")) );
+			tiles2.put("WhisperingGarden", ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Whispering Garden@2x.png")));
+			tiles2.put("Sunk",ImageIO.read(ForbiddenIslandPanel.class.getResource("/Image/Tile_Flood_Water@2x.png")));
 		}
 		catch(Exception E) {
 			System.out.println("Exception Error");
@@ -97,6 +139,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		choice1 = tcb;
 		choice2 = fcb;
 		p1 = diver;
+		p2 = engineer;
 		addMouseListener(this);
 		/*actions.put("Special Action", false);
 		actions.put("Move", false);
@@ -108,24 +151,15 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 		for (int i = 0; i < 4; i++) {
 			playerTurn[i] = false;
 		}*/
-		moveTurn = false;
+		moveTurn1 = false;
+		moveTurn2 = false;
+		moveTurn3 = false;
+		moveTurn4 = false;
 		tcDraw = false;
 		toPush = false;
 		toPushFlood = false;
 		currentMoveType = "";
-		pl1coords = new int[2];
-		pl1coords[0] = 501;
-		pl1coords[1] = 20;
-		tp1coords = new int[2];
-		tp1coords[0] = 501;
-		tp1coords[1] = 20;
 		
-		pl2coords = new int[2];
-		pl2coords[0] = 501;
-		pl2coords[1] = 20;
-		tp2coords = new int[2];
-		tp2coords[0] = 501;
-		tp2coords[1] = 20;
 		
 	board = new String[6][6];
 	for (int r = 0; r < board.length; r++) {
@@ -214,9 +248,18 @@ public void paint(Graphics g) {
 	g.fillRect(0,0,1350,740);
 	g.drawImage(tcb,  60,  314,  130,  77,  null);*/
 	//g.drawImage(foolsLanding,  589,  13,  111,  117,  null); //-200 from width
+
+//g.drawImage(sunk, 0, 0, 1350, 750, null);
+	g.drawImage(blueB,  245,  670,  125,  50,  null); //-200 from width
+	for (int r=0; r<6; r++) {
+		for (int c=0; c<6; c++) {
+			g.drawImage(gamestate.getTileImage(r, c), xTileCoords[r], yTileCoords[c], 90, 95, null);
+		}
+	}
+	
 	g.drawImage(choice1,  60,  314,  130,  77,  null);
-	g.drawImage(foolsLanding,  500,  13,  90,  95,  null); //-200 from width
-	g.drawImage(templeOfTheSun,  620,  13,  90,  95,  null); //-200 from width
+	//g.drawImage(foolsLanding,  500,  13,  90,  95,  null); //-200 from width
+	//g.drawImage(templeOfTheSun,  620,  13,  90,  95,  null); //-200 from width
 	g.drawImage(fcb,  1000,  314,  130,  77,  null); //-200 from width
 	g.drawImage(choice2,  1000,  314,  130,  77,  null); //-200 from width
 	g.drawImage(waterLevelMeter,  1200,  180,  125,  325,  null); //-200 from width
@@ -225,23 +268,23 @@ public void paint(Graphics g) {
 	g.drawImage(blueB,  710,  670,  125,  50,  null); //-200 from width
 	g.drawImage(blueB,  865,  670,  125,  50,  null); //-200 from width
 	g.drawImage(blueB,  1020,  670,  125,  50,  null); //-200 from width
+	g.drawImage(blueB,  1175,  670,  125,  50,  null); //-200 from width
 	g.drawImage(blueTreasure,  350,  70,  90,  100,  null);
 	g.drawImage(fireTreasure,  800,  70,  90,  100,  null);
 	g.drawImage(airTreasure,  350,  470,  90,  100,  null);
 	g.drawImage(earthTreasure,  800,  470,  90,  100,  null);
 	g.drawImage(engTile,  1300,  680,  90,  90,  null);
 	//g.drawImage(diver,  590,  20,  60,  87,  null);
-	g.drawImage(p1,  pl1coords[0],  pl1coords[1],  49,  71,  null);
-
-	g.drawImage(blueB,  245,  670,  125,  50,  null); //-200 from width
-
-	
+	g.drawImage(p1,  pl1coords[0],  pl1coords[1],  35,  50,  null);
+	g.drawImage(p2,  pl2coords[0],  pl2coords[1],  35,  50,  null);
 	System.out.println("Paint");
 	g.setFont(new Font("TimesRoman",Font.PLAIN,12));
 	g.drawString("SPECIAL ACTION", 405, 697);
 	g.drawString("SHORE UP", 715, 697);
 	g.drawString("CAPTURE TREASURE", 867, 697);
 	g.drawString("GIVE TREASURE", 1025, 697);
+	g.drawString("END TURN", 1180, 697);
+
 	g.setFont(new Font("TimesRoman",Font.PLAIN,25));
 	g.drawString("MOVE", 560, 697);
 	g.drawString("DRAW", 250, 697);
@@ -307,6 +350,12 @@ public static int distanceX() {
 public static int distanceY() {
 	return Math.abs(tp1coords[0] - pl1coords[0]);
 }
+public static int distanceX2() {
+	return Math.abs(tp2coords[0] - pl2coords[0]);
+}
+public static int distanceY2() {
+	return Math.abs(tp2coords[0] - pl2coords[0]);
+}
 public void mousePressed(MouseEvent e) { }
 public void mouseReleased(MouseEvent e) { }
 public void mouseEntered(MouseEvent e) { }
@@ -345,17 +394,32 @@ public void mouseClicked(MouseEvent e) {
 					
 				}
 				if (x >= 550 && x <= 680 && y >= 665) {
-					if(p1 == diver) {
+					if(p1 == diver && gamestate.isP1turn()) {
 						p1 = diverSelect;
-						moveTurn = true;
+						moveTurn1 = true;
 						
 					}
 					else {
 						p1 = diver;
-						moveTurn = false;
+						moveTurn1 = false;
+					}
+					if(p2 == engineer && gamestate.isP2turn()) {
+						p2 = engSelect;
+						moveTurn2 = true;
+						
+					}
+					else {
+						p2 = engineer;
+						moveTurn2 = false;
 					}
 				}
-				if (moveTurn == true && y < 595) {
+				if (x >= 1170 && x <= 1300 && y >= 665) {
+					if (moveTurn1 == true) {
+						moveTurn1=false;
+						moveTurn2 = true;
+					}
+				}
+				if (moveTurn1 == true && y < 595) {
 					tp1coords[0] = x;
 					tp1coords[1] = y;
 					currentMoveType = "move"; 
@@ -363,6 +427,16 @@ public void mouseClicked(MouseEvent e) {
 					if (div.move()) {
 						pl1coords[0] = x;
 						pl1coords[1] = y;
+					}
+				}
+				if (moveTurn2 == true && y < 595) {
+					tp2coords[0] = x;
+					tp2coords[1] = y;
+					currentMoveType = "move"; 
+					Engineer eng = new Engineer();
+					if (eng.move()) {
+						pl2coords[0] = x;
+						pl2coords[1] = y;
 					}
 				}
 				if (tcDraw == true && x < 400 && x >= 245 && y >= 665) {
