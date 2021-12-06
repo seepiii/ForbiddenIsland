@@ -272,7 +272,7 @@ public class ForbiddenIslandPanel extends JPanel implements MouseListener {
 			g.drawImage(gamestate.drawTreasureCard().getImage(), 400, 314, 77, 130, null);
 		}
 		if (toPushFlood == true && y >= 660 && x < 400 && x >= 245) {
-			g.drawImage(gamestate.drawFloodCard().getImage(), 600, 314, 77, 130, null);
+			g.drawImage(gamestate.drawFloodCards().getImage(), 600, 314, 77, 130, null);
 		}
 		/*if (actions.get("Special Action") == true) {
 			
