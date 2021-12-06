@@ -10,7 +10,7 @@ public class Diver {
 		return true;
 	}
 	public static boolean move() {
-		if (ForbiddenIslandPanel.distanceX() <= 130 && ForbiddenIslandPanel.distanceY() <= 130) {
+		if (ForbiddenIslandPanel.distanceX() <= 165 && ForbiddenIslandPanel.distanceY() <= 130) {
 			return true;
 		}
 		return false;
