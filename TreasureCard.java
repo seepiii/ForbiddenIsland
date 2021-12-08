@@ -5,7 +5,7 @@ public class TreasureCard {
 	private boolean action;
 	private String actionType;
 	private boolean treasure;
-	private String treasureType;
+	private String treasureType="";
 	private BufferedImage image;
 	
 	public TreasureCard(BufferedImage i, boolean w, boolean a, boolean t) {
@@ -36,14 +36,10 @@ public class TreasureCard {
 		return treasure;
 	}
 	public String getActionType() {
-		if (action)
-			return actionType;
-		return null;
+		return actionType;
 	}
 	public String getTreasureType() {
-		if (treasure)
-			return treasureType;
-		return null;
+		return treasureType;
 	}
 	public BufferedImage getImage() {
 		return image;

@@ -1,4 +1,3 @@
-
 public class Messenger extends Player {
 	
 	public Messenger(int[] coords) {

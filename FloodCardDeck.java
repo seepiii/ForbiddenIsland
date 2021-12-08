@@ -95,8 +95,7 @@ public class FloodCardDeck {
 		}
 		Collections.shuffle(list);
 		while (!list.isEmpty()) {
-			FloodCard fc=list.remove(0);
-			cards.push(fc);
+			cards.push(list.remove(0));
 		}
 	}
 	
@@ -107,7 +106,9 @@ public class FloodCardDeck {
 		return discarded;
 	}
 	public FloodCard getTopDiscarded() {
-		return cards.peek();
+		if (!discarded.isEmpty())
+			return discarded.peek();
+		return null;
 	}
 	public FloodCard drawCard() {
 		FloodCard fc=cards.pop();
@@ -122,9 +123,9 @@ public class FloodCardDeck {
 		while (!discarded.isEmpty()) {
 			list.add(discarded.pop());
 		}
-		while (!cards.isEmpty()) {
-			list.add(cards.pop());
-		}
+//		while (!cards.isEmpty()) {
+//			list.add(cards.pop());
+//		}
 		Collections.shuffle(list);
 		while (!list.isEmpty()) {
 			FloodCard fc=list.remove(0);

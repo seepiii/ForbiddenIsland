@@ -20,7 +20,6 @@ public class ForbiddenIslandRunner {
 			waterLevel = JOptionPane.showInputDialog(null,"Please enter the difficulty you want to start the game at. Options: Novice, Normal, Elite, Legendary.","Difficulty",JOptionPane.QUESTION_MESSAGE);
 		}
 		ForbiddenIslandFrame b = new ForbiddenIslandFrame("Forbidden Island", waterLevel);
-
 	/*	int numPlayers = Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter the number of players. (2 - 4)","Number of Players",JOptionPane.QUESTION_MESSAGE));
 		while(numPlayers < 2 || numPlayers > 4 || (numPlayers != (int)numPlayers)) {
 			JOptionPane.showMessageDialog(null, "Invalid input. Please submit a number within range.");

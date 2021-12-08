@@ -1,6 +1,8 @@
-public class Diver {
+import java.awt.image.BufferedImage;
+
+public class Engineer {
 	//private static int[] coordinates;
-	public Diver() {
+	public Engineer() {
 		//coordinates = new int[cs.length];
 		//for (int i = 0; i < cs.length; i++) {
 		//	coordinates[i] = cs[i];
@@ -10,12 +12,15 @@ public class Diver {
 		return true;
 	}
 	public static boolean move() {
-		if (ForbiddenIslandPanel.distanceX() <= 165 && ForbiddenIslandPanel.distanceY() <= 130) {
+		if (ForbiddenIslandPanel.distanceX2() <= 165 && ForbiddenIslandPanel.distanceY2() <= 165) {
 			return true;
 		}
 		return false;
 	}
 	public String toString () {
-		return ""+ ForbiddenIslandPanel.distanceX();
+		return ""+ ForbiddenIslandPanel.distanceX2();
 	}
+	/*public BufferedImage getTreasureCards() {
+		
+	}*/
 }

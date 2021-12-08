@@ -3,17 +3,27 @@ import javax.imageio.ImageIO;
 
 public class Treasure {
 	private String name;
-	private BufferedImage image;
+	private BufferedImage claimed, unclaimed, state;
+	private String s;
 	
-	public Treasure(String n, BufferedImage i) {
+	public Treasure(String n, BufferedImage r, BufferedImage notClaimed) {
 		name=n;
-		image=i;
+		claimed=r;
+		unclaimed=notClaimed;
+		state=unclaimed;
+		s="unclaimed";
 	}
-	
+	public void claim() {
+		state=claimed;
+		s="claimed";
+	}
 	public String getName() {
 		return name;
 	}
+	public String getState() {
+		return s;
+	}
 	public BufferedImage getImage() {
-		return image;
+		return state;
 	}
 }
